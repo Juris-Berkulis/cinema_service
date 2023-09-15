@@ -21,7 +21,6 @@ const bannerBackground: ComputedRef<string> = computed(() => {
     position: relative;
     width: 100%;
     padding: 104px 120px 100px;
-    opacity: 0.8;
 
     &::before {
         content: '';
@@ -33,19 +32,46 @@ const bannerBackground: ComputedRef<string> = computed(() => {
         width: 100%;
         height: 100%;
         z-index: -1;
+        opacity: 0.8;
         background: v-bind(bannerBackground);
-        background-position: right 25%;
+        background-position: 35% 25%;
         transform: rotateY(180deg);
         background-size: cover;
+    }
+
+    @media (max-width: 768px) {
+        padding: 60px 64px 76px;
+    }
+
+    @media (max-width: 360px) {
+        padding: 56px 16px 73px;
     }
 }
 
 .title {
     margin-bottom: 24px;
+    
+    @media (max-width: 768px) {
+        margin-bottom: 16px;
+    }
+
+    @media (max-width: 360px) {
+        margin-bottom: 6px;
+    }
 }
 
 .description {
     max-width: 424px;
     margin-bottom: 40px;
+
+    @media (max-width: 768px) {
+        max-width: 370px;
+        margin-bottom: 48px;
+    }
+
+    @media (max-width: 360px) {
+        max-width: 280px;
+        margin-bottom: 44px;
+    }
 }
 </style>
