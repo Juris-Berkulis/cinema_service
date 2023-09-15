@@ -21,13 +21,24 @@ const actorsListTranslate: ComputedRef<string> = computed(() => {
     return `translateX(${actorsListTranslateNumber.value}px)`
 });
 
+const isSliderBtnPrevDisabled: ComputedRef<boolean> = computed(() => {
+    return actorsListTranslateNumber.value === 0
+});
+
+const isSliderBtnNextDisabled: ComputedRef<boolean> = computed(() => {
+    console.log(actorsListRef.value?.scrollWidth)
+    console.log(decorRef.value?.scrollWidth)
+    return (actorsListTranslateNumber.value === maxSliderDisplacement.value && maxSliderDisplacement.value !== 0)
+        || (!!actorsListRef.value && !!decorRef.value && actorsListRef.value.scrollWidth === decorRef.value.scrollWidth)
+});
+
 const changeMaxSliderDisplacement = (): void => {
     if (decorRef.value && actorsListRef.value) {
         maxSliderDisplacement.value = decorRef.value.scrollWidth - actorsListRef.value.scrollWidth;
     }
 };
 
-const changeParametres = () => {
+const changeParametres = (): void => {
     changeMaxSliderDisplacement();
     if (actorsListTranslateNumber.value < maxSliderDisplacement.value) {
         actorsListTranslateNumber.value = maxSliderDisplacement.value;
@@ -52,6 +63,7 @@ const moveSlider = (direction: 'prev' | 'next'): void => {
     intervalId.value = setInterval(() => {
         switch (direction) {
             case 'prev': 
+                if (isSliderBtnPrevDisabled.value) break;
                 if (actorsListTranslateNumber.value + sliderMovementStep < 0) {
                     actorsListTranslateNumber.value += sliderMovementStep;
                 } else {
@@ -59,6 +71,7 @@ const moveSlider = (direction: 'prev' | 'next'): void => {
                 }
                 break;
             case 'next': 
+                if (isSliderBtnNextDisabled.value) break;
                 if (maxSliderDisplacement.value < actorsListTranslateNumber.value - sliderMovementStep) {
                     actorsListTranslateNumber.value -= sliderMovementStep;
                 } else {
@@ -66,7 +79,7 @@ const moveSlider = (direction: 'prev' | 'next'): void => {
                 }
                 break;
         }
-    }, 1);
+    }, 10);
 };
 
 const actorItemBackground = (src: string): string => {
@@ -79,7 +92,7 @@ const actorItemBackground = (src: string): string => {
     <div class="top">
         <h2 class="title">Актерский состав</h2>
         <div class="sliderBtns">
-            <button>
+            <button class="sliderBtn" :disabled="isSliderBtnPrevDisabled">
                 <IconArrowToPrev 
                     @mousedown="moveSlider('prev')" 
                     @mouseup="stopSlider" 
@@ -89,7 +102,7 @@ const actorItemBackground = (src: string): string => {
                     @contextmenu.prevent
                 />
             </button>
-            <button>
+            <button class="sliderBtn" :disabled="isSliderBtnNextDisabled">
                 <IconArrowToNext 
                     @mousedown="moveSlider('next')" 
                     @mouseup="stopSlider" 
@@ -101,7 +114,7 @@ const actorItemBackground = (src: string): string => {
             </button>
         </div>
     </div>
-    <div class="decor" ref="decorRef"></div>
+    <div class="decor" :class="{decor__75: !isSliderBtnPrevDisabled && !isSliderBtnNextDisabled, decor__100: isSliderBtnNextDisabled}" ref="decorRef"></div>
     <div class="actors__list" ref="actorsListRef">
         <div class="actor__item" :style="{backgroundImage: actorItemBackground(actor.src)}" v-for="actor of actorsList" :key="actor.id">
             <div class="actor__main">
@@ -118,17 +131,50 @@ const actorItemBackground = (src: string): string => {
 .section {
     padding: 0 120px;
     overflow: hidden;
+
+    @media (max-width: 768px) {
+        padding: 0 64px;
+    }
+
+    @media (max-width: 360px) {
+        padding: 0 16px;
+    }
 }
 
 .top {
     margin-bottom: 24px;
     display: flex;
     justify-content: space-between;
+
+    @media (max-width: 360px) {
+        margin-bottom: 16px;
+    }
 }
 
 .sliderBtns {
     display: flex;
     gap: 24px;
+}
+
+.sliderBtn {
+    width: 32px;
+    height: 32px;
+    color: #ec3f3f;
+
+    &:hover {
+        color: #ff1e1e;
+    }
+
+    &:disabled {
+        color: #ffffff;
+        opacity: 0.3;
+        cursor: default;
+    }
+
+    @media (max-width: 360px) {
+        width: 28px;
+        height: 28px;
+    }
 }
 
 .decor {
@@ -144,8 +190,21 @@ const actorItemBackground = (src: string): string => {
         top: 0;
         bottom: 0;
         left: 0;
-        max-width: 588px;
-        background-color: #ec3f3f;;
+        width: 50%;
+        background-color: #ec3f3f;
+        transition: all 0.4s linear;
+    }
+
+    &__75::before {
+        width: 75%;
+    }
+
+    &__100::before {
+        width: 100%;
+    }
+
+    @media (max-width: 768px) {
+        margin-bottom: 24px;
     }
 }
 
