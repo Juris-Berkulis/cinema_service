@@ -8,4 +8,7 @@
 </template>
 
 <style scoped lang="scss">
+main {
+    background-color: #181818;
+}
 </style>
