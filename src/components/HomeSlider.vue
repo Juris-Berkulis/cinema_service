@@ -54,7 +54,7 @@ onUnmounted(() => {
 });
 
 const stopSlider = (): void => {
-    clearInterval(intervalId.value);
+    clearInterval(Number(intervalId.value));
 };
 
 const moveSlider = (direction: 'prev' | 'next'): void => {
