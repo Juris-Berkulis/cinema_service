@@ -2,6 +2,7 @@
 import { ref, type Ref, onUnmounted } from 'vue';
 import BaseBtn2 from './base/BaseBtn2.vue';
 import type { Stills } from '@/assets/data/data';
+import { useEventListener } from '@/composables/event';
 
 interface Props {
     stillsList: Stills[],
@@ -35,11 +36,7 @@ const changeStills = (event?: MediaQueryListEvent): void => {
     addStillsIntoList();
 }
 
-mobileWidthMediaQuery.addEventListener("change", changeStills);
-
-onUnmounted(() => {
-    mobileWidthMediaQuery.removeEventListener("change", changeStills);
-});
+useEventListener(mobileWidthMediaQuery, 'change', changeStills);
 
 changeStills();
 </script>

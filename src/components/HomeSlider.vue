@@ -3,6 +3,7 @@ import { ref, type ComputedRef, type Ref, computed, watchEffect, onUnmounted } f
 import IconArrowToNext from './icons/IconArrowToNext.vue';
 import IconArrowToPrev from './icons/IconArrowToPrev.vue';
 import type { Actor } from '@/assets/data/data';
+import { useEventListener } from '@/composables/event';
 
 interface Props {
     actorsList: Actor[],
@@ -47,11 +48,7 @@ watchEffect(() => {
     changeMaxSliderDisplacement();
 });
 
-window.addEventListener('resize', changeParametres);
-
-onUnmounted(() => {
-    window.removeEventListener('resize', changeParametres);
-});
+useEventListener(window, 'resize', changeParametres);
 
 const stopSlider = (): void => {
     clearInterval(Number(intervalId.value));
