@@ -79,5 +79,10 @@ export const movie: Movie = {
         {id: 3, src: '/src/assets/img/vedmak/stills/003.png',},
         {id: 4, src: '/src/assets/img/vedmak/stills/004.png',},
         {id: 5, src: '/src/assets/img/vedmak/stills/005.png',},
+        {id: 6, src: '/src/assets/img/vedmak/stills/006.png',},
+        {id: 7, src: '/src/assets/img/vedmak/stills/007.png',},
+        {id: 8, src: '/src/assets/img/vedmak/stills/008.png',},
+        {id: 9, src: '/src/assets/img/vedmak/stills/009.png',},
+        {id: 10, src: '/src/assets/img/vedmak/stills/010.png',},
     ],
 };

@@ -26,8 +26,6 @@ const isSliderBtnPrevDisabled: ComputedRef<boolean> = computed(() => {
 });
 
 const isSliderBtnNextDisabled: ComputedRef<boolean> = computed(() => {
-    console.log(actorsListRef.value?.scrollWidth)
-    console.log(decorRef.value?.scrollWidth)
     return (actorsListTranslateNumber.value === maxSliderDisplacement.value && maxSliderDisplacement.value !== 0)
         || (!!actorsListRef.value && !!decorRef.value && actorsListRef.value.scrollWidth === decorRef.value.scrollWidth)
 });
