@@ -52,6 +52,7 @@ const bannerBackground: ComputedRef<string> = computed(() => {
 
     @media (max-width: 360px) {
         padding: 56px 16px 73px;
+        margin-bottom: 16px;
     }
 }
 

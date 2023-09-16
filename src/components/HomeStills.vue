@@ -64,6 +64,7 @@ changeStills();
 
     @media (max-width: 360px) {
         padding: 0 16px;
+        margin-bottom: 48px;
     }
 }
 

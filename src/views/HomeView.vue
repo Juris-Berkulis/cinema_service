@@ -13,4 +13,15 @@ import { movie } from '@/assets/data/data';
 </template>
 
 <style scoped lang="scss">
+section {
+    margin-bottom: 72px;
+
+    @media (max-width: 768px) {
+        margin-bottom: 64px;
+    }
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
 </style>

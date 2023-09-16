@@ -132,6 +132,7 @@ a {
   }
 }
 
+.button, 
 button {
   color: #FFF;
   text-align: center;
@@ -143,6 +144,7 @@ button {
   border: none;
   background-color: transparent;
   cursor: pointer;
+  text-decoration: none;
 }
 
 img {
