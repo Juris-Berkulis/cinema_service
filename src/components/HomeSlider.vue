@@ -226,6 +226,21 @@ const actorItemBackground = (src: string): string => {
     background-repeat: no-repeat;
     background-color: lightgray;
 
+    @media (max-width: 768px) {
+        width: 256px;
+        min-width: 256px;
+        height: 360px;
+        padding: 16px 16px 24px;
+    }
+
+    @media (max-width: 360px) {
+        width: 216px;
+        min-width: 216px;
+        height: 280px;
+        margin-right: 16px;
+        padding: 16px;
+    }
+
     &:last-child {
         margin-right: 0;
     }

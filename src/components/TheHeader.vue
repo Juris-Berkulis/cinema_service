@@ -5,7 +5,9 @@ import logo from '@/assets/img/logo.png';
 
 <template>
 <header class="header">
-    <img class="logo" :src="logo" alt="logo">
+    <RouterLink to="/">
+        <img class="logo" :src="logo" alt="logo">
+    </RouterLink>
     <BaseBtn3 to="/request" />
 </header>
 </template>
