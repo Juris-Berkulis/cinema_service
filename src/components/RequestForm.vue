@@ -135,13 +135,13 @@ const submit = (): void => {
 
     if (!errorForForm.value) {
         const data = {
-            selectedCity: selectedCity.value,
-            inputedName: inputedName.value,
-            inputedEmail: inputedEmail.value,
-            inputedTel: originalTextForRegExpForTel.value,
-            inputedRemark: inputedRemark.value,
-            attachedFile: attachedFile.value,
-            isConsent: isConsent.value,
+            city: selectedCity.value,
+            name: inputedName.value,
+            email: inputedEmail.value,
+            tel: originalTextForRegExpForTel.value,
+            remark: inputedRemark.value,
+            file: attachedFile.value,
+            consent: isConsent.value,
         };
 
         console.log(data);
