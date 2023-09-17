@@ -124,14 +124,19 @@ const actorItemBackground = (src: string): string => {
 
 <style scoped lang="scss">
 .section {
+    max-width: 1440px;
+    margin-right: auto;
+    margin-left: auto;
     padding: 0 120px;
     overflow: hidden;
 
     @media (max-width: 1439px) {
+        max-width: 768px;
         padding: 0 64px;
     }
 
     @media (max-width: 767px) {
+        max-width: 360px;
         padding: 0 16px;
     }
 }

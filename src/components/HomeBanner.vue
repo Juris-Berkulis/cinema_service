@@ -25,7 +25,9 @@ const bannerBackground: ComputedRef<string> = computed(() => {
 <style scoped lang="scss">
 .section {
     position: relative;
-    width: 100%;
+    max-width: 1440px;
+    margin-right: auto;
+    margin-left: auto;
     padding: 104px 120px 100px;
     z-index: 2;
 
@@ -47,10 +49,12 @@ const bannerBackground: ComputedRef<string> = computed(() => {
     }
 
     @media (max-width: 1439px) {
+        max-width: 768px;
         padding: 60px 64px 76px;
     }
 
     @media (max-width: 767px) {
+        max-width: 360px;
         padding: 56px 16px 73px;
         margin-bottom: 16px;
     }

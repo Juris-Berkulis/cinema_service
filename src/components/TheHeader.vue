@@ -14,18 +14,18 @@ import logo from '@/assets/img/logo.png';
 
 <style scoped lang="scss">
 .header {
-    padding: 22px 120px;
+    padding: 22px calc((100% - 1440px + 2 * 120px) / 2);
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: #000000;
 
     @media (max-width: 1439px) {
-        padding: 14px 64px;
+        padding: 14px calc((100% - 768px + 2 * 64px) / 2);
     }
 
     @media (max-width: 767px) {
-        padding: 22px 16px;
+        padding: 22px calc((100% - 360px + 2 * 16px) / 2);
     }
 }
 

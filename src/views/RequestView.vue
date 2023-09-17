@@ -20,10 +20,12 @@ import RequestForm from '@/components/RequestForm.vue';
     padding: 0 120px;
 
     @media (max-width: 1439px) {
+        max-width: 768px;
         padding: 0 64px;
     }
 
     @media (max-width: 767px) {
+        max-width: 360px;
         padding: 0 16px;
     }
 }
