@@ -46,11 +46,11 @@ const bannerBackground: ComputedRef<string> = computed(() => {
         background-size: cover;
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 1439px) {
         padding: 60px 64px 76px;
     }
 
-    @media (max-width: 360px) {
+    @media (max-width: 767px) {
         padding: 56px 16px 73px;
         margin-bottom: 16px;
     }
@@ -59,11 +59,11 @@ const bannerBackground: ComputedRef<string> = computed(() => {
 .title {
     margin-bottom: 24px;
     
-    @media (max-width: 768px) {
+    @media (max-width: 1439px) {
         margin-bottom: 16px;
     }
 
-    @media (max-width: 360px) {
+    @media (max-width: 767px) {
         margin-bottom: 6px;
     }
 }
@@ -72,12 +72,12 @@ const bannerBackground: ComputedRef<string> = computed(() => {
     max-width: 424px;
     margin-bottom: 40px;
 
-    @media (max-width: 768px) {
+    @media (max-width: 1439px) {
         max-width: 370px;
         margin-bottom: 48px;
     }
 
-    @media (max-width: 360px) {
+    @media (max-width: 767px) {
         max-width: 280px;
         margin-bottom: 44px;
     }

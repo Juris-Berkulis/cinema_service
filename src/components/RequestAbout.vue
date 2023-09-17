@@ -18,7 +18,7 @@
 .descriptiveText {
     margin-bottom: 8px;
 
-    @media (max-width: 360px) {
+    @media (max-width: 767px) {
         margin-bottom: 4px;
     }
 }
@@ -35,7 +35,7 @@ a:has(.informationText) {
 .mb {
     margin-bottom: 32px;
 
-    @media (max-width: 360px) {
+    @media (max-width: 767px) {
         margin-bottom: 24px;
     }
 

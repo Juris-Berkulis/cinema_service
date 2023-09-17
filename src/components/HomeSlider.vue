@@ -127,11 +127,11 @@ const actorItemBackground = (src: string): string => {
     padding: 0 120px;
     overflow: hidden;
 
-    @media (max-width: 768px) {
+    @media (max-width: 1439px) {
         padding: 0 64px;
     }
 
-    @media (max-width: 360px) {
+    @media (max-width: 767px) {
         padding: 0 16px;
     }
 }
@@ -141,7 +141,7 @@ const actorItemBackground = (src: string): string => {
     display: flex;
     justify-content: space-between;
 
-    @media (max-width: 360px) {
+    @media (max-width: 767px) {
         margin-bottom: 16px;
     }
 }
@@ -166,7 +166,7 @@ const actorItemBackground = (src: string): string => {
         cursor: default;
     }
 
-    @media (max-width: 360px) {
+    @media (max-width: 767px) {
         width: 28px;
         height: 28px;
     }
@@ -198,7 +198,7 @@ const actorItemBackground = (src: string): string => {
         width: 100%;
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 1439px) {
         margin-bottom: 24px;
     }
 }
@@ -223,14 +223,14 @@ const actorItemBackground = (src: string): string => {
     background-repeat: no-repeat;
     background-color: lightgray;
 
-    @media (max-width: 768px) {
+    @media (max-width: 1439px) {
         width: 256px;
         min-width: 256px;
         height: 360px;
         padding: 16px 16px 24px;
     }
 
-    @media (max-width: 360px) {
+    @media (max-width: 767px) {
         width: 216px;
         min-width: 216px;
         height: 280px;

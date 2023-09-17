@@ -19,11 +19,11 @@ import RequestForm from '@/components/RequestForm.vue';
     margin: 0 auto;
     padding: 0 120px;
 
-    @media (max-width: 768px) {
+    @media (max-width: 1439px) {
         padding: 0 64px;
     }
 
-    @media (max-width: 360px) {
+    @media (max-width: 767px) {
         padding: 0 16px;
     }
 }
@@ -31,11 +31,11 @@ import RequestForm from '@/components/RequestForm.vue';
 .title {
     margin-bottom: 48px;
 
-    @media (max-width: 768px) {
+    @media (max-width: 1439px) {
         margin-bottom: 36px;
     }
 
-    @media (max-width: 360px) {
+    @media (max-width: 767px) {
         margin-bottom: 24px;
     }
 }
@@ -43,7 +43,7 @@ import RequestForm from '@/components/RequestForm.vue';
 .container {
     display: flex;
 
-    @media (max-width: 360px) {
+    @media (max-width: 767px) {
         flex-direction: column;
     }
 }
@@ -52,12 +52,12 @@ import RequestForm from '@/components/RequestForm.vue';
     width: 486px;
     margin-right: 126px;
 
-    @media (max-width: 768px) {
+    @media (max-width: 1439px) {
         width: 320px;
         margin-right: 53px;
     }
 
-    @media (max-width: 360px) {
+    @media (max-width: 767px) {
         width: 100%;
         margin-right: 0;
     }

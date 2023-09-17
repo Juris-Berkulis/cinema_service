@@ -185,7 +185,7 @@ const submit = (): void => {
 .field.half {
     grid-column: 1 / 2;
 
-    @media (max-width: 768px) {
+    @media (max-width: 1439px) {
         grid-column: 1 / 3;
     }
 }

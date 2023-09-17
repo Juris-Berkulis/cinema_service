@@ -16,7 +16,7 @@ import { movie } from '@/assets/data/data';
 section {
     margin-bottom: 72px;
 
-    @media (max-width: 768px) {
+    @media (max-width: 1439px) {
         margin-bottom: 64px;
     }
 

@@ -23,7 +23,7 @@ const nextPage = (): void => {
     addStillsIntoList();
 };
 
-const mobileWidthMediaQuery: MediaQueryList = window.matchMedia("(max-width: 360px)");
+const mobileWidthMediaQuery: MediaQueryList = window.matchMedia("(max-width: 767px)");
 
 const changeStills = (event?: MediaQueryListEvent): void => {
     if (event?.matches || mobileWidthMediaQuery.matches) {
@@ -55,11 +55,11 @@ changeStills();
 .section {
     padding: 0 120px;
 
-    @media (max-width: 768px) {
+    @media (max-width: 1439px) {
         padding: 0 64px;
     }
 
-    @media (max-width: 360px) {
+    @media (max-width: 767px) {
         padding: 0 16px;
         margin-bottom: 48px;
     }
@@ -68,7 +68,7 @@ changeStills();
 .title {
     margin-bottom: 40px;
 
-    @media (max-width: 768px) {
+    @media (max-width: 1439px) {
         margin-bottom: 24px;
     }
 }
@@ -83,12 +83,12 @@ changeStills();
         margin-bottom: 0;
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 1439px) {
         margin-bottom: 24px;
         grid-gap: 16px;
     }
 
-    @media (max-width: 360px) {
+    @media (max-width: 767px) {
         grid-template-columns: repeat(1, 1fr);
     }
 }
@@ -106,7 +106,7 @@ changeStills();
         grid-column: auto / span 2;
     }
 
-    @media (max-width: 360px) {
+    @media (max-width: 767px) {
         aspect-ratio: calc(328 / 212);
 
         &:nth-child(5n + 1) {

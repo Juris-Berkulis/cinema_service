@@ -20,11 +20,11 @@ import logo from '@/assets/img/logo.png';
     align-items: center;
     background-color: #000000;
 
-    @media (max-width: 768px) {
+    @media (max-width: 1439px) {
         padding: 14px 64px;
     }
 
-    @media (max-width: 360px) {
+    @media (max-width: 767px) {
         padding: 22px 16px;
     }
 }
@@ -33,12 +33,12 @@ import logo from '@/assets/img/logo.png';
     width: 130px;
     height: 44px;
 
-    @media (max-width: 768px) {
+    @media (max-width: 1439px) {
         width: 130px;
         height: 44px;
     }
 
-    @media (max-width: 360px) {
+    @media (max-width: 767px) {
         width: 106px;
         height: 36px;
     }
