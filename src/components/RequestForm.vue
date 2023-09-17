@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { ref, watch, type Ref, type ComputedRef, computed } from 'vue';
-import BaseBtn1 from './BaseBtn1.vue';
-import BaseSelect from './BaseSelect.vue';
-import BaseInput from './BaseInput.vue';
-import BaseTextarea from './BaseTextarea.vue';
-import BaseInputFile from './BaseInputFile.vue';
-import BaseCheckbox from './BaseCheckbox.vue';
+import BaseBtn1 from '@/components/base/BaseBtn1.vue';
+import BaseSelect from '@/components/base/BaseSelect.vue';
+import BaseInput from '@/components/base/BaseInput.vue';
+import BaseTextarea from '@/components/base/BaseTextarea.vue';
+import BaseInputFile from '@/components/base/BaseInputFile.vue';
+import BaseCheckbox from '@/components/base/BaseCheckbox.vue';
 import { regExpMatching, requiredField } from '@/composables/validation';
 import { type City } from '@/types';
 

@@ -1,12 +1,11 @@
 <script setup lang="ts">
-import BaseForm from '@/components/base/BaseForm.vue';
-
+import RequestForm from '@/components/RequestForm.vue';
 </script>
 
 <template>
 <h1>Оставьте заявку</h1>
 <div>
-    <BaseForm />
+    <RequestForm />
     <div>
         <p>Наша горячая линия</p>
         <a href="tel:+78003823112">
