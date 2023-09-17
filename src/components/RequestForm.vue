@@ -24,6 +24,31 @@ const inputedRemark: Ref<string> = ref('');
 const attachedFile: Ref<string> = ref('');
 const isConsent: Ref<boolean> = ref(false);
 
+const originalTextForRegExpForTel: Ref<string> = ref(inputedTel.value);
+
+const maskForInputedTel = (value: string): string => {
+    originalTextForRegExpForTel.value = value;
+
+    let mask: string = '';
+    if (value.length) {
+        mask += `+7 (${value.slice(0, 3)}`;
+        if (value.length > 3) {
+            mask += `) ${value.slice(3, 5)}`;
+            if (value.length > 5) {
+                mask += `-${value.slice(5, 7)}`;
+                if (value.length > 7) {
+                    mask += `-${value.slice(7, 10)}`;
+                    if (value.length > 10) {
+                        mask += `; ${value.slice(10)}`;
+                    }
+                }
+            }
+        }
+    }
+
+    return mask
+};
+
 const errorForSelectedCity: Ref<string> = ref('');
 const errorForInputedName: Ref<string> = ref('');
 const errorForInputedEmail: Ref<string> = ref('');
@@ -48,7 +73,6 @@ const checkSelectedCity = (): void => {
         default: errorForSelectedCity.value = '';
     }
 };
-
 const checkInputedName = (): void => {
     switch (true) {
         case requiredField(inputedName.value): errorForInputedName.value = textForRequiredFieldError; break;
@@ -64,8 +88,8 @@ const checkInputedEmail = (): void => {
 }
 const checkInputedTel = (): void => {
     switch (true) {
-        case requiredField(inputedTel.value): errorForInputedTel.value = textForRequiredFieldError; break;
-        case regExpMatching(inputedTel.value, regExpForTel): errorForInputedTel.value = textForRegExpError; break;
+        case requiredField(originalTextForRegExpForTel.value): errorForInputedTel.value = textForRequiredFieldError; break;
+        case regExpMatching(originalTextForRegExpForTel.value, regExpForTel): errorForInputedTel.value = textForRegExpError; break;
         default: errorForInputedTel.value = '';
     }
 }
@@ -101,7 +125,7 @@ const checkAllFields = (): void => {
 watch(selectedCity, checkSelectedCity);
 watch(inputedName, checkInputedName);
 watch(inputedEmail, checkInputedEmail);
-watch(inputedTel, checkInputedTel);
+watch(originalTextForRegExpForTel, checkInputedTel);
 watch(inputedRemark, checkInputedRemark);
 watch(attachedFile, checkAttachedFile);
 watch(isConsent, checkIsConsent);
@@ -114,7 +138,7 @@ const submit = (): void => {
             selectedCity: selectedCity.value,
             inputedName: inputedName.value,
             inputedEmail: inputedEmail.value,
-            inputedTel: inputedTel.value,
+            inputedTel: originalTextForRegExpForTel.value,
             inputedRemark: inputedRemark.value,
             attachedFile: attachedFile.value,
             isConsent: isConsent.value,
@@ -130,7 +154,7 @@ const submit = (): void => {
     <BaseSelect v-model:selectedValue="selectedCity" :error="errorForSelectedCity" :optionsList="options" defaultText="Выберете город" />
     <BaseInput v-model:inputedValue="inputedName" :error="errorForInputedName" type="text" label="Имя" />
     <BaseInput v-model:inputedValue="inputedEmail" :error="errorForInputedEmail" type="email" label="Email" />
-    <BaseInput v-model:inputedValue="inputedTel" :error="errorForInputedTel" type="tel" label="Телефон" />
+    <BaseInput v-model:inputedValue="inputedTel" :error="errorForInputedTel" type="tel" label="Телефон" :mask="maskForInputedTel" />
     <BaseTextarea v-model:inputedValue="inputedRemark" :error="errorForInputedRemark" placeholder="Оставьте пометку к заказу" cols="30" rows="10" />
     <BaseInputFile v-model:attachedFile="attachedFile" :error="errorForAttachedFile" label="Прикрепите файл" />
     <BaseCheckbox v-model:isNoted="isConsent" :error="errorForIsConsent" label="Даю согласие на обработку своих персональных данных" />

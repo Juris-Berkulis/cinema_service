@@ -1,17 +1,32 @@
 <script setup lang="ts">
+import { ref, type Ref } from 'vue';
+
 interface Props {
     type: 'text' | 'email' | 'tel',
     inputedValue: string,
     error: string,
     label: string,
+    mask?: (value: string) => string,
 };
 
-defineProps<Props>();
+const props = defineProps<Props>();
 
 const emit = defineEmits(['update:inputedValue']);
 
+const inputedOriginalValue: Ref<string> = ref('');
+
 const changeInputedValue = (event: Event): void => {
-    emit('update:inputedValue', (event.target as HTMLInputElement).value);
+    if (props.mask) {
+        const inputedChart: string | null = (event as InputEvent).data;
+        if (inputedChart) {
+            inputedOriginalValue.value += inputedChart;
+        } else {
+            inputedOriginalValue.value = inputedOriginalValue.value.slice(0, -1);
+        }
+        emit('update:inputedValue', props.mask(inputedOriginalValue.value));
+    } else {
+        emit('update:inputedValue', (event.target as HTMLInputElement).value);
+    }
 };
 </script>
 
