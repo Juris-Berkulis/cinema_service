@@ -3,12 +3,17 @@ import IconPaperclip from '../icons/IconPaperclip.vue';
 
 interface Props {
     attachedFile: string,
+    error: string,
     label: string,
 };
 
 defineProps<Props>();
 
-defineEmits(['update:attachedFile']);
+const emit = defineEmits(['update:attachedFile']);
+
+const changeInputedValue = (event: Event): void => {
+    emit('update:attachedFile', (event.target as HTMLInputElement).value);
+};
 </script>
 
 <template>
@@ -18,12 +23,13 @@ defineEmits(['update:attachedFile']);
         id="file"
         type="file"
         :value="attachedFile"
-        @change="$emit('update:attachedFile', ($event.target as HTMLInputElement).value)" 
+        @change="changeInputedValue" 
     >
     <label for="file">
         <span>{{ attachedFile || label }}</span>
         <IconPaperclip />
     </label>
+    <div v-if="error">{{ error }}</div>
 </div>
 </template>
 

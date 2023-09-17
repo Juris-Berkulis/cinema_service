@@ -4,6 +4,7 @@ import IconCheckmark from '../icons/IconCheckmark.vue';
 
 interface Props {
     isNoted: boolean,
+    error: string,
     label: string,
 };
 
@@ -32,6 +33,7 @@ watchEffect(() => {
         </div>
         <span>{{ label }}</span>
     </label>
+    <div v-if="error">{{ error }}</div>
 </div>
 </template>
 

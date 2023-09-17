@@ -4,6 +4,7 @@ import { ref, type Ref } from 'vue';
 
 interface Props {
     selectedValue: City | '',
+    error: string,
     optionsList: Array<City>,
     defaultText: string,
 };
@@ -12,11 +13,11 @@ defineProps<Props>();
 
 const emit = defineEmits(['update:selectedValue']);
 
+const isShowOptionsList: Ref<boolean> = ref(false);
+
 const changeSelectedValue = (option: City): void => {
     emit('update:selectedValue', option);
 };
-
-const isShowOptionsList: Ref<boolean> = ref(false);
 </script>
 
 <template>
@@ -25,6 +26,7 @@ const isShowOptionsList: Ref<boolean> = ref(false);
     <div class="optionsList" v-if="isShowOptionsList">
         <div class="options" v-for="option of optionsList" :key="option" @click="changeSelectedValue(option)">{{ option }}</div>
     </div>
+    <div v-if="error">{{ error }}</div>
 </div>
 </template>
 

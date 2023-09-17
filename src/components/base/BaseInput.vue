@@ -2,12 +2,17 @@
 interface Props {
     type: 'text' | 'email' | 'tel',
     inputedValue: string,
+    error: string,
     label: string,
 };
 
 defineProps<Props>();
 
-defineEmits(['update:inputedValue']);
+const emit = defineEmits(['update:inputedValue']);
+
+const changeInputedValue = (event: Event): void => {
+    emit('update:inputedValue', (event.target as HTMLInputElement).value);
+};
 </script>
 
 <template>
@@ -15,9 +20,10 @@ defineEmits(['update:inputedValue']);
     <input 
         :type="type"
         :value="inputedValue" 
-        @input="$emit('update:inputedValue', ($event.target as HTMLInputElement).value)" 
+        @input="changeInputedValue" 
     >
     <span>{{ label }}</span>
+    <div v-if="error">{{ error }}</div>
 </div>
 </template>
 
