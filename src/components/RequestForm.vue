@@ -158,19 +158,35 @@ const submit = (): void => {
 
 <template>
 <form class="form" @submit.prevent="submit">
-    <BaseSelect v-model:selectedValue="selectedCity" :error="errorForSelectedCity" :optionsList="options" defaultText="Выберете город" />
-    <BaseInput v-model:inputedValue="inputedName" :error="errorForInputedName" type="text" label="Имя" />
-    <BaseInput v-model:inputedValue="inputedEmail" :error="errorForInputedEmail" type="email" label="Email" />
-    <BaseInput v-model:inputedValue="inputedTel" :error="errorForInputedTel" type="tel" label="Телефон" :mask="maskForInputedTel" />
-    <BaseTextarea v-model:inputedValue="inputedRemark" :error="errorForInputedRemark" placeholder="Оставьте пометку к заказу" cols="30" rows="10" />
-    <BaseInputFile v-model:attachedFile="attachedFile" :error="errorForAttachedFile" label="Прикрепите файл" />
-    <BaseCheckbox v-model:isNoted="isConsent" :error="errorForIsConsent" label="Даю согласие на обработку своих персональных данных" />
-    <BaseBtn1 type="submit" />
+    <BaseSelect class="field full" v-model:selectedValue="selectedCity" :error="errorForSelectedCity" :optionsList="options" defaultText="Выберете город" />
+    <BaseInput class="field full" v-model:inputedValue="inputedName" :error="errorForInputedName" type="text" label="Имя" />
+    <BaseInput class="field half" v-model:inputedValue="inputedEmail" :error="errorForInputedEmail" type="email" label="Email" />
+    <BaseInput class="field half" v-model:inputedValue="inputedTel" :error="errorForInputedTel" type="tel" label="Телефон" :mask="maskForInputedTel" />
+    <BaseTextarea class="field full" v-model:inputedValue="inputedRemark" :error="errorForInputedRemark" placeholder="Оставьте пометку к заказу" cols="30" rows="10" />
+    <BaseInputFile class="field full" v-model:attachedFile="attachedFile" :error="errorForAttachedFile" label="Прикрепите файл" />
+    <BaseCheckbox class="field full" v-model:isNoted="isConsent" :error="errorForIsConsent" label="Даю согласие на обработку своих персональных данных" />
+    <BaseBtn1 class="field full" type="submit" />
 </form>
 </template>
 
 <style scoped lang="scss">
 .form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 32px;
+    column-gap: 24px;
     color: #ffffff;
+}
+
+.field.full {
+    grid-column: 1 / 3;
+}
+
+.field.half {
+    grid-column: 1 / 2;
+
+    @media (max-width: 768px) {
+        grid-column: 1 / 3;
+    }
 }
 </style>

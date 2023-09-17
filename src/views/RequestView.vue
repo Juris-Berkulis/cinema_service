@@ -1,23 +1,65 @@
 <script setup lang="ts">
+import RequestAbout from '@/components/RequestAbout.vue';
 import RequestForm from '@/components/RequestForm.vue';
 </script>
 
 <template>
-<h1>Оставьте заявку</h1>
-<div>
-    <RequestForm />
-    <div>
-        <p>Наша горячая линия</p>
-        <a href="tel:+78003823112">
-            <h2>8 800 38 23 112</h2>
-        </a>
-        <p>Главный офис</p>
-        <h3>г. Москва, Садовническая ул., 80</h3>
-        <p>Часы работы</p>
-        <h3>Пн-Пт с 10:00 до 22:00</h3>
+<section class="section">
+    <h1 class="title">Оставьте заявку</h1>
+    <div class="container">
+        <RequestForm class="form" />
+        <RequestAbout />
     </div>
-</div>
+</section>
 </template>
 
 <style scoped lang="scss">
+.section {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 120px;
+
+    @media (max-width: 768px) {
+        padding: 0 64px;
+    }
+
+    @media (max-width: 360px) {
+        padding: 0 16px;
+    }
+}
+
+.title {
+    margin-bottom: 48px;
+
+    @media (max-width: 768px) {
+        margin-bottom: 36px;
+    }
+
+    @media (max-width: 360px) {
+        margin-bottom: 24px;
+    }
+}
+
+.container {
+    display: flex;
+
+    @media (max-width: 360px) {
+        flex-direction: column;
+    }
+}
+
+.form {
+    width: 486px;
+    margin-right: 126px;
+
+    @media (max-width: 768px) {
+        width: 320px;
+        margin-right: 53px;
+    }
+
+    @media (max-width: 360px) {
+        width: 100%;
+        margin-right: 0;
+    }
+}
 </style>

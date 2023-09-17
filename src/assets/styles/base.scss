@@ -156,6 +156,12 @@ svg {
   height: inherit;
 }
 
+textarea, 
 input {
+  width: 100%;
   outline: none;
+}
+
+textarea {
+  resize: none;
 }
