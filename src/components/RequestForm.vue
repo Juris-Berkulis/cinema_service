@@ -24,6 +24,24 @@ const inputedRemark: Ref<string> = ref('');
 const attachedFile: Ref<string> = ref('');
 const isConsent: Ref<boolean> = ref(false);
 
+const errorForSelectedCity: Ref<string> = ref('');
+const errorForInputedName: Ref<string> = ref('');
+const errorForInputedEmail: Ref<string> = ref('');
+const errorForInputedTel: Ref<string> = ref('');
+const errorForInputedRemark: Ref<string> = ref('');
+const errorForAttachedFile: Ref<string> = ref('');
+const errorForIsConsent: Ref<string> = ref('');
+
+const errorForForm: ComputedRef<boolean> = computed(() => {
+    return !!errorForSelectedCity.value
+        || !!errorForInputedName.value
+        || !!errorForInputedEmail.value
+        || !!errorForInputedTel.value
+        || !!errorForInputedRemark.value
+        || !!errorForAttachedFile.value
+        || !!errorForIsConsent.value
+});
+
 const maskForInputedTel = (value: string): string => {
     let mask: string = '';
     if (value.length) {
@@ -45,24 +63,6 @@ const maskForInputedTel = (value: string): string => {
     return mask
 };
 
-const errorForSelectedCity: Ref<string> = ref('');
-const errorForInputedName: Ref<string> = ref('');
-const errorForInputedEmail: Ref<string> = ref('');
-const errorForInputedTel: Ref<string> = ref('');
-const errorForInputedRemark: Ref<string> = ref('');
-const errorForAttachedFile: Ref<string> = ref('');
-const errorForIsConsent: Ref<string> = ref('');
-
-const errorForForm: ComputedRef<boolean> = computed(() => {
-    return !!errorForSelectedCity.value
-        || !!errorForInputedName.value
-        || !!errorForInputedEmail.value
-        || !!errorForInputedTel.value
-        || !!errorForInputedRemark.value
-        || !!errorForAttachedFile.value
-        || !!errorForIsConsent.value
-});
-
 const checkSelectedCity = (): void => {
     switch (true) {
         case requiredField(selectedCity.value): errorForSelectedCity.value = textForEmptedCityError; break;
@@ -74,39 +74,39 @@ const checkInputedName = (): void => {
         case requiredField(inputedName.value): errorForInputedName.value = textForRequiredFieldError; break;
         default: errorForInputedName.value = '';
     }
-}
+};
 const checkInputedEmail = (): void => {
     switch (true) {
         case requiredField(inputedEmail.value): errorForInputedEmail.value = textForRequiredFieldError; break;
         case regExpMatching(inputedEmail.value, regExpForEmail): errorForInputedEmail.value = textForRegExpError; break;
         default: errorForInputedEmail.value = '';
     }
-}
+};
 const checkInputedTel = (): void => {
     switch (true) {
         case requiredField(inputedTel.value): errorForInputedTel.value = textForRequiredFieldError; break;
         case regExpMatching(inputedTel.value, regExpForTel): errorForInputedTel.value = textForRegExpError; break;
         default: errorForInputedTel.value = '';
     }
-}
+};
 const checkInputedRemark = (): void => {
     switch (true) {
         case requiredField(inputedRemark.value): errorForInputedRemark.value = textForRequiredFieldError; break;
         default: errorForInputedRemark.value = '';
     }
-}
+};
 const checkAttachedFile = (): void => {
     switch (true) {
         case requiredField(attachedFile.value): errorForAttachedFile.value = textForRequiredFieldError; break;
         default: errorForAttachedFile.value = '';
     }
-}
+};
 const checkIsConsent = (): void => {
     switch (true) {
         case requiredField(isConsent.value): errorForIsConsent.value = textForRequiredFieldError; break;
         default: errorForIsConsent.value = '';
     }
-}
+};
 
 const checkAllFields = (): void => {
     checkSelectedCity();
