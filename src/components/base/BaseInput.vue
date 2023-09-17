@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { ref, type Ref } from 'vue';
-
 interface Props {
     type: 'text' | 'email' | 'tel',
     inputedValue: string,
@@ -11,20 +9,14 @@ interface Props {
 
 const props = defineProps<Props>();
 
-const emit = defineEmits(['update:inputedValue']);
-
-const inputedOriginalValue: Ref<string> = ref('');
+const emit = defineEmits(['update:inputedValue', 'update:inputedOriginalValue']);
 
 const changeInputedValue = (event: Event): void => {
     if (props.mask) {
         const inputedChart: string | null = (event as InputEvent).data;
-        if (inputedChart) {
-            inputedOriginalValue.value += inputedChart;
-        } else {
-            inputedOriginalValue.value = inputedOriginalValue.value.slice(0, -1);
-        }
-        (event.target as HTMLInputElement).value = props.mask(inputedOriginalValue.value);
-        emit('update:inputedValue', inputedOriginalValue.value);
+        const value: string = inputedChart ? props.inputedValue + inputedChart : props.inputedValue.slice(0, -1);
+        (event.target as HTMLInputElement).value = props.mask(value);
+        emit('update:inputedValue', value);
     } else {
         emit('update:inputedValue', (event.target as HTMLInputElement).value);
     }
@@ -35,7 +27,7 @@ const changeInputedValue = (event: Event): void => {
 <div>
     <input 
         :type="type"
-        :value="mask ? inputedValue ? mask(inputedOriginalValue) : '' : inputedValue"
+        :value="mask ? mask(inputedValue) : inputedValue"
         @input="changeInputedValue" 
     >
     <span>{{ label }}</span>
