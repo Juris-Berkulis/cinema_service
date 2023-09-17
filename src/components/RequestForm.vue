@@ -98,33 +98,13 @@ const checkAllFields = (): void => {
     checkIsConsent();
 };
 
-watch(selectedCity, () => {
-    checkSelectedCity();
-});
-
-watch(inputedName, () => {
-    checkInputedName();
-});
-
-watch(inputedEmail, () => {
-    checkInputedEmail();
-});
-
-watch(inputedTel, () => {
-    checkInputedTel();
-});
-
-watch(inputedRemark, () => {
-    checkInputedRemark();
-});
-
-watch(attachedFile, () => {
-    checkAttachedFile();
-});
-
-watch(isConsent, () => {
-    checkIsConsent();
-});
+watch(selectedCity, checkSelectedCity);
+watch(inputedName, checkInputedName);
+watch(inputedEmail, checkInputedEmail);
+watch(inputedTel, checkInputedTel);
+watch(inputedRemark, checkInputedRemark);
+watch(attachedFile, checkAttachedFile);
+watch(isConsent, checkIsConsent);
 
 const submit = (): void => {
     checkAllFields();
