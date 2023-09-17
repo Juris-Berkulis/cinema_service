@@ -24,11 +24,7 @@ const inputedRemark: Ref<string> = ref('');
 const attachedFile: Ref<string> = ref('');
 const isConsent: Ref<boolean> = ref(false);
 
-const originalTextForRegExpForTel: Ref<string> = ref(inputedTel.value);
-
 const maskForInputedTel = (value: string): string => {
-    originalTextForRegExpForTel.value = value;
-
     let mask: string = '';
     if (value.length) {
         mask += `+7 (${value.slice(0, 3)}`;
@@ -88,8 +84,8 @@ const checkInputedEmail = (): void => {
 }
 const checkInputedTel = (): void => {
     switch (true) {
-        case requiredField(originalTextForRegExpForTel.value): errorForInputedTel.value = textForRequiredFieldError; break;
-        case regExpMatching(originalTextForRegExpForTel.value, regExpForTel): errorForInputedTel.value = textForRegExpError; break;
+        case requiredField(inputedTel.value): errorForInputedTel.value = textForRequiredFieldError; break;
+        case regExpMatching(inputedTel.value, regExpForTel): errorForInputedTel.value = textForRegExpError; break;
         default: errorForInputedTel.value = '';
     }
 }
@@ -125,10 +121,20 @@ const checkAllFields = (): void => {
 watch(selectedCity, checkSelectedCity);
 watch(inputedName, checkInputedName);
 watch(inputedEmail, checkInputedEmail);
-watch(originalTextForRegExpForTel, checkInputedTel);
+watch(inputedTel, checkInputedTel);
 watch(inputedRemark, checkInputedRemark);
 watch(attachedFile, checkAttachedFile);
 watch(isConsent, checkIsConsent);
+
+const resetForm = (): void => {
+    selectedCity.value = '';
+    inputedName.value = '';
+    inputedEmail.value = '';
+    inputedTel.value = '';
+    inputedRemark.value = '';
+    attachedFile.value = '';
+    isConsent.value = false;
+};
 
 const submit = (): void => {
     checkAllFields();
@@ -138,13 +144,14 @@ const submit = (): void => {
             city: selectedCity.value,
             name: inputedName.value,
             email: inputedEmail.value,
-            tel: originalTextForRegExpForTel.value,
+            tel: `+7${inputedTel.value}`,
             remark: inputedRemark.value,
             file: attachedFile.value,
             consent: isConsent.value,
         };
 
         console.log(data);
+        resetForm();
     }
 }
 </script>

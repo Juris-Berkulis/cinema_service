@@ -23,7 +23,8 @@ const changeInputedValue = (event: Event): void => {
         } else {
             inputedOriginalValue.value = inputedOriginalValue.value.slice(0, -1);
         }
-        emit('update:inputedValue', props.mask(inputedOriginalValue.value));
+        (event.target as HTMLInputElement).value = props.mask(inputedOriginalValue.value);
+        emit('update:inputedValue', inputedOriginalValue.value);
     } else {
         emit('update:inputedValue', (event.target as HTMLInputElement).value);
     }
@@ -34,7 +35,7 @@ const changeInputedValue = (event: Event): void => {
 <div>
     <input 
         :type="type"
-        :value="inputedValue" 
+        :value="mask ? inputedValue ? mask(inputedOriginalValue) : '' : inputedValue"
         @input="changeInputedValue" 
     >
     <span>{{ label }}</span>
