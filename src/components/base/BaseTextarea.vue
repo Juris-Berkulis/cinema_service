@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import BaseFormFieldError from './BaseFormFieldError.vue';
+
 interface Props {
     inputedValue: string,
     error: string,
@@ -17,17 +19,41 @@ const changeInputedValue = (event: Event): void => {
 </script>
 
 <template>
-<div>
+<div class="container">
     <textarea 
+        class="textarea"
+        :class="{error}"
         :value="inputedValue" 
         @input="changeInputedValue" 
         :placeholder="placeholder"
         :cols="cols" 
         :rows="rows"
     ></textarea>
-    <div v-if="error">{{ error }}</div>
+    <BaseFormFieldError :error="error" />
 </div>
 </template>
 
 <style scoped lang="scss">
+.container {
+    position: relative;
+    font-family: Futura PT;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+}
+
+.textarea {
+    padding: 18px 24px;
+    background-color: rgba(255, 255, 255, 0.10);
+    transition: all 0.2s linear;
+
+    @media (max-width: 1439px) {
+        padding: 18px 20px;
+    }
+
+    &.error {
+        background-color: rgba(236, 63, 63, 0.2);
+    }
+}
 </style>

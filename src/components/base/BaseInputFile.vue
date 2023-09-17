@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import IconPaperclip from '../icons/IconPaperclip.vue';
+import BaseFormFieldError from './BaseFormFieldError.vue';
 
 interface Props {
     attachedFile: string,
@@ -17,7 +18,7 @@ const changeInputedValue = (event: Event): void => {
 </script>
 
 <template>
-<div>
+<div class="container">
     <input 
         class="input"
         id="file"
@@ -25,16 +26,51 @@ const changeInputedValue = (event: Event): void => {
         :value="attachedFile"
         @change="changeInputedValue" 
     >
-    <label for="file">
-        <span>{{ attachedFile || label }}</span>
+    <label class="label" :class="{error}" for="file">
+        <span class="fileName" :class="{full: attachedFile}">{{ attachedFile || label }}</span>
         <IconPaperclip />
     </label>
-    <div v-if="error">{{ error }}</div>
+    <BaseFormFieldError :error="error" />
 </div>
 </template>
 
 <style scoped lang="scss">
+.container {
+    position: relative;
+    font-family: Futura PT;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+}
+
 .input {
     display: none;
 }
+
+.label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 24px;
+    background-color: rgba(255, 255, 255, 0.10);
+    transition: all 0.2s linear;
+
+    @media (max-width: 1439px) {
+        padding: 18px 20px;
+    }
+
+    &.error {
+        background-color: rgba(236, 63, 63, 0.2);
+    }
+}
+
+.fileName {
+        display: block;
+        opacity: 0.4;
+
+        &.full {
+            opacity: 1;
+        }
+    }
 </style>
