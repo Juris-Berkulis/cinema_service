@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import TheHeader from './components/TheHeader.vue';
+import TheFooter from './components/TheFooter.vue';
 
 </script>
 
@@ -8,6 +9,7 @@ import TheHeader from './components/TheHeader.vue';
 <main>
     <RouterView />
 </main>
+<TheFooter />
 </template>
 
 <style scoped lang="scss">

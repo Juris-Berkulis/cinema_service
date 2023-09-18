@@ -25,18 +25,13 @@ import logo from '@/assets/img/logo.png';
     }
 
     @media (max-width: 767px) {
-        padding: 22px calc((100% - 360px + 2 * 16px) / 2);
+        padding: 22px max(16px, calc((100% - 360px + 2 * 16px) / 2));
     }
 }
 
 .logo {
     width: 130px;
     height: 44px;
-
-    @media (max-width: 1439px) {
-        width: 130px;
-        height: 44px;
-    }
 
     @media (max-width: 767px) {
         width: 106px;
