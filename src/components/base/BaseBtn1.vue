@@ -17,6 +17,7 @@ defineProps<Props>();
 
 <style scoped lang="scss">
 .btn {
+    display: inline-block;
     padding: 16px 32px;
     background-color: #ec3f3f;
 

@@ -6,13 +6,14 @@ import IconVk from './icons/IconVk.vue';
 import { ref, type Ref } from 'vue';
 import TheModal from './TheModal.vue';
 import ThePolicy from './ThePolicy.vue';
+import { routesObj } from '@/router';
 
 const isShowPolicy: Ref<boolean> = ref(false);
 </script>
 
 <template>
 <footer class="footer">
-    <RouterLink to="/">
+    <RouterLink :to="routesObj.home">
         <img class="logo" :src="logo" alt="logo">
     </RouterLink>
     <button class="btn" @click="isShowPolicy = true">Политика обработки персональных данных</button>

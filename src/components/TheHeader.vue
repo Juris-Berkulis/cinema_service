@@ -1,14 +1,15 @@
 <script setup lang="ts">
+import { routesObj } from '@/router';
 import BaseBtn3 from './base/BaseBtn3.vue';
 import logo from '@/assets/img/logo.png';
 </script>
 
 <template>
 <header class="header">
-    <RouterLink to="/">
+    <RouterLink :to="routesObj.home">
         <img class="logo" :src="logo" alt="logo">
     </RouterLink>
-    <BaseBtn3 to="/request" />
+    <BaseBtn3 :to="routesObj.request" />
 </header>
 </template>
 

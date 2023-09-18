@@ -2,6 +2,7 @@
 import { computed, type ComputedRef } from 'vue';
 import BaseBtn1 from '@/components/base/BaseBtn1.vue';
 import type { Banner } from '@/assets/data/data';
+import { routesObj } from '@/router';
 
 interface Props {
     banner: Banner,
@@ -18,7 +19,7 @@ const bannerBackground: ComputedRef<string> = computed(() => {
 <section class="section">
     <h1 class="title">{{ banner.title }}</h1>
     <p class="description">{{ banner.description }}</p>
-    <BaseBtn1 />
+    <BaseBtn1 :to="routesObj.request">Смотреть сериал</BaseBtn1>
 </section>
 </template>
 

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { routesObj } from '@/router';
 import BaseBtn1 from './base/BaseBtn1.vue';
 </script>
 
@@ -6,7 +7,7 @@ import BaseBtn1 from './base/BaseBtn1.vue';
 <div class="success">
     <h1 class="title">Заявка отправлена!</h1>
     <h4 class="description">Мы получили вашу заявку. Наши специалисты свяжутся с вами в ближайшее время, чтобы уточнить все детали заказа.</h4>
-    <BaseBtn1 class="btn" to="/">Вернуться на главную</BaseBtn1>
+    <BaseBtn1 class="btn" :to="routesObj.home">Вернуться на главную</BaseBtn1>
 </div>
 </template>
 
