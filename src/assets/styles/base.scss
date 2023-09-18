@@ -8,6 +8,12 @@ body:has(#modal) {
   overflow: hidden;
 }
 
+#app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 button, 
 a {
   transition: all 0.4s linear;
@@ -144,7 +150,7 @@ button {
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
-  line-height: 1;
+  line-height: 24px;
   border: none;
   background-color: transparent;
   cursor: pointer;

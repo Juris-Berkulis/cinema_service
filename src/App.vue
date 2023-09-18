@@ -14,6 +14,7 @@ import TheFooter from './components/TheFooter.vue';
 
 <style scoped lang="scss">
 main {
+    flex-grow: 1;
     background-color: #181818;
 }
 </style>

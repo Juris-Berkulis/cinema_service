@@ -44,6 +44,8 @@ import logo from '@/assets/img/logo.png';
 }
 
 .btn {
+    line-height: 1;
+
     @media (max-width: 767px) {
         padding: 16px 20px;
     }
