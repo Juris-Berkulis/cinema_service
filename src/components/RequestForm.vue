@@ -9,6 +9,8 @@ import BaseCheckbox from '@/components/base/BaseCheckbox.vue';
 import { regExpMatching, requiredField } from '@/composables/validation';
 import { type City } from '@/types';
 
+const emit = defineEmits(['update:isRequestSent']);
+
 const options: City[] = ['Москва', 'Санкт-Петербург', 'Казань', 'Краснодар', 'Ростов-на-Дону'];
 const regExpForEmail = /^[a-z0-9\.\-_]{1,}@[a-z]{2,4}\.[a-z]{2,4}$/;
 const regExpForTel = /^[0-9]{10}$/;
@@ -152,6 +154,7 @@ const submit = (): void => {
 
         console.log(data);
         resetForm();
+        emit('update:isRequestSent', true);
     }
 }
 </script>

@@ -1,8 +1,16 @@
 <script setup lang="ts">
+interface Props {
+    to?: `/${string}`,
+};
+
+defineProps<Props>();
 </script>
 
 <template>
-<button class="btn">
+<RouterLink class="button btn" v-if="to" :to="to">
+    <slot>Подключить подписку</slot>
+</RouterLink>
+<button class="btn" v-else>
     <slot>Оставить заявку</slot>
 </button>
 </template>

@@ -1,13 +1,18 @@
 <script setup lang="ts">
 import RequestAbout from '@/components/RequestAbout.vue';
 import RequestForm from '@/components/RequestForm.vue';
+import RequestSuccess from '@/components/RequestSuccess.vue';
+import { ref, type Ref } from 'vue';
+
+const isRequestSent: Ref<boolean> = ref(false);
 </script>
 
 <template>
 <section class="section">
-    <h1 class="title">Оставьте заявку</h1>
+    <h1 class="title" v-if="!isRequestSent">Оставьте заявку</h1>
     <div class="container">
-        <RequestForm class="form" />
+        <RequestSuccess class="request" v-if="isRequestSent" />
+        <RequestForm class="request" v-else v-model:isRequestSent="isRequestSent" />
         <RequestAbout />
     </div>
 </section>
@@ -17,16 +22,16 @@ import RequestForm from '@/components/RequestForm.vue';
 .section {
     max-width: 1440px;
     margin: 0 auto;
-    padding: 0 120px;
+    padding: 40px 120px 88px;
 
     @media (max-width: 1439px) {
         max-width: 768px;
-        padding: 0 64px;
+        padding: 28px 64px 56px;
     }
 
     @media (max-width: 767px) {
         max-width: 360px;
-        padding: 0 16px;
+        padding: 16px 16px 56px;
     }
 }
 
@@ -50,7 +55,7 @@ import RequestForm from '@/components/RequestForm.vue';
     }
 }
 
-.form {
+.request {
     width: 486px;
     margin-right: 126px;
 
