@@ -9,24 +9,27 @@ import logo from '@/assets/img/logo.png';
     <RouterLink :to="routesObj.home">
         <img class="logo" :src="logo" alt="logo">
     </RouterLink>
-    <BaseBtn3 :to="routesObj.request" />
+    <BaseBtn3 v-if="routesObj.request !== $route.path" :to="routesObj.request" />
 </header>
 </template>
 
 <style scoped lang="scss">
 .header {
-    padding: 22px calc((100% - 1440px + 2 * 120px) / 2);
+    height: 88px;
+    padding: 0 calc((100% - 1440px + 2 * 120px) / 2);
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: #000000;
 
     @media (max-width: 1439px) {
-        padding: 14px calc((100% - 768px + 2 * 64px) / 2);
+        height: 72px;
+        padding: 0 calc((100% - 768px + 2 * 64px) / 2);
     }
 
     @media (max-width: 767px) {
-        padding: 22px max(16px, calc((100% - 360px + 2 * 16px) / 2));
+        height: 80px;
+        padding: 0 max(16px, calc((100% - 360px + 2 * 16px) / 2));
     }
 }
 
