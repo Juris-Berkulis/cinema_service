@@ -8,6 +8,7 @@ import BaseInputFile from '@/components/base/BaseInputFile.vue';
 import BaseCheckbox from '@/components/base/BaseCheckbox.vue';
 import { regExpMatching, requiredField } from '@/composables/validation';
 import { type City } from '@/types';
+import BaseLoader from './base/BaseLoader.vue';
 
 const emit = defineEmits(['update:isRequestSent']);
 
@@ -17,6 +18,8 @@ const regExpForTel = /^[0-9]{10}$/;
 const textForEmptedCityError = 'Город не выбран';
 const textForRequiredFieldError = 'Поле не заполненно';
 const textForRegExpError = 'Неверный формат';
+
+const isLoading: Ref<boolean> = ref(false);
 
 const selectedCity: Ref<City | ''> = ref('');
 const inputedName: Ref<string> = ref('');
@@ -142,6 +145,8 @@ const submit = (): void => {
     checkAllFields();
 
     if (!errorForForm.value) {
+        isLoading.value = true;
+
         const data = {
             city: selectedCity.value,
             name: inputedName.value,
@@ -152,11 +157,20 @@ const submit = (): void => {
             consent: isConsent.value,
         };
 
-        console.log(data);
-        resetForm();
-        emit('update:isRequestSent', true);
+        const promise = new Promise((resolve) => {
+            setTimeout(() => {
+                resolve(data);
+            }, 4000);
+        });
+
+        promise.then(() => {
+            console.log(data);
+            resetForm();
+            emit('update:isRequestSent', true);
+            isLoading.value = false;
+        });
     }
-}
+};
 </script>
 
 <template>
@@ -168,7 +182,10 @@ const submit = (): void => {
     <BaseTextarea class="field full" v-model:inputedValue="inputedRemark" :error="errorForInputedRemark" placeholder="Оставьте пометку к заказу" cols="30" rows="10" />
     <BaseInputFile class="field full" v-model:attachedFile="attachedFile" :error="errorForAttachedFile" label="Прикрепите файл" />
     <BaseCheckbox class="field full" v-model:isNoted="isConsent" :error="errorForIsConsent" label="Даю согласие на обработку своих персональных данных" />
-    <BaseBtn1 class="field full" type="submit" />
+    <div class="field full">
+        <BaseLoader class="loader" v-if="isLoading" />
+        <BaseBtn1 class="btn" v-else type="submit" />
+    </div>
 </form>
 </template>
 
@@ -179,6 +196,10 @@ const submit = (): void => {
     row-gap: 32px;
     column-gap: 24px;
     color: #ffffff;
+
+    @media (max-width: 767px) {
+        margin-bottom: 40px;
+    }
 }
 
 .field {
@@ -197,6 +218,17 @@ const submit = (): void => {
         @media (max-width: 1439px) {
             grid-column: 1 / 3;
         }
+    }
+}
+
+.loader {
+    height: 56px;
+    color: #ec3f3f;
+}
+
+.btn {
+    @media (max-width: 1439px) {
+        width: 100%;
     }
 }
 </style>
