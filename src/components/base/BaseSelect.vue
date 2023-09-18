@@ -36,15 +36,6 @@ const changeSelectedValue = (option: City): void => {
 </template>
 
 <style scoped lang="scss">
-.container {
-    position: relative;
-    font-family: Futura PT;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 20px;
-}
-
 .select {
     position: relative;
     background-color: rgba(255, 255, 255, 0.10);
@@ -89,6 +80,7 @@ const changeSelectedValue = (option: City): void => {
     left: 0;
     padding-bottom: 9px;
     background-color: #2f2f2f;
+    transition: all 0.2s linear;
     z-index: 9;
 
     &.error {

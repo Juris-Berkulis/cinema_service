@@ -40,15 +40,6 @@ const changeInputedValue = (event: Event): void => {
 </template>
 
 <style scoped lang="scss">
-.container {
-    position: relative;
-    font-family: Futura PT;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 20px;
-}
-
 .input {
     padding: 18px 24px;
     background-color: rgba(255, 255, 255, 0.10);

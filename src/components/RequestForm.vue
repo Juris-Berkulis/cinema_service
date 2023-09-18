@@ -178,15 +178,22 @@ const submit = (): void => {
     color: #ffffff;
 }
 
-.field.full {
-    grid-column: 1 / 3;
-}
+.field {
+    position: relative;
+    font-family: Futura PT;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
 
-.field.half {
-    grid-column: 1 / 2;
-
-    @media (max-width: 1439px) {
+    &.full {
         grid-column: 1 / 3;
+    }
+
+    &.half {
+        @media (max-width: 1439px) {
+            grid-column: 1 / 3;
+        }
     }
 }
 </style>

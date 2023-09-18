@@ -39,15 +39,6 @@ watchEffect(() => {
 </template>
 
 <style scoped lang="scss">
-.container {
-    position: relative;
-    font-family: Futura PT;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 20px;
-}
-
 .input {
     display: none;
 }
@@ -68,7 +59,7 @@ watchEffect(() => {
     align-items: center;
     border: 1px solid rgba(255, 255, 255, 0.30);
     background-color: rgba(255, 255, 255, 0.15);
-    transition: all 0.4s linear;
+    transition: all 0.2s linear;
 
     @media (max-width: 767px) {
         margin-right: 16px;
