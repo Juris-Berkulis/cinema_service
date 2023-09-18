@@ -22,6 +22,11 @@ section {
 
     &:last-child {
         margin-bottom: 0;
+        padding-bottom: 96px;
+
+        @media (max-width: 1439px) {
+            padding-bottom: 0;
+        }
     }
 }
 </style>
