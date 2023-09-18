@@ -3,6 +3,10 @@ import logo from '@/assets/img/logo.png';
 import IconInstagram from './icons/IconInstagram.vue';
 import IconFacebook from './icons/IconFacebook.vue';
 import IconVk from './icons/IconVk.vue';
+import { ref, type Ref } from 'vue';
+import TheModal from './TheModal.vue';
+
+const isShowPolicy: Ref<boolean> = ref(false);
 </script>
 
 <template>
@@ -10,7 +14,7 @@ import IconVk from './icons/IconVk.vue';
     <RouterLink to="/">
         <img class="logo" :src="logo" alt="logo">
     </RouterLink>
-    <button class="btn">Политика обработки персональных данных</button>
+    <button class="btn" @click="isShowPolicy = true">Политика обработки персональных данных</button>
     <div class="socialMediaWrapper">
         <a class="socialMediaLink" href="#" target="_blank">
             <IconInstagram class="socialMedia" />
@@ -23,6 +27,8 @@ import IconVk from './icons/IconVk.vue';
         </a>
     </div>
 </footer>
+<TheModal v-model:isShowModal="isShowPolicy">
+</TheModal>
 </template>
 
 <style scoped lang="scss">
