@@ -5,6 +5,7 @@ import IconFacebook from './icons/IconFacebook.vue';
 import IconVk from './icons/IconVk.vue';
 import { ref, type Ref } from 'vue';
 import TheModal from './TheModal.vue';
+import ThePolicy from './ThePolicy.vue';
 
 const isShowPolicy: Ref<boolean> = ref(false);
 </script>
@@ -28,6 +29,7 @@ const isShowPolicy: Ref<boolean> = ref(false);
     </div>
 </footer>
 <TheModal v-model:isShowModal="isShowPolicy">
+    <ThePolicy />
 </TheModal>
 </template>
 

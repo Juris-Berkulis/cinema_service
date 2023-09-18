@@ -63,10 +63,14 @@ defineEmits(['update:isShowModal']);
     transition: all 0.4s linear;
 
     @media (max-width: 1439px) {
+        width: 720px;
+        height: 80vh;
         padding: 48px 40px;
     }
 
-    @media (max-width: 1439px) {
+    @media (max-width: 767px) {
+        width: 100%;
+        height: 100%;
         padding: 0 16px;
     }
 }
@@ -75,14 +79,19 @@ defineEmits(['update:isShowModal']);
     position: absolute;
     top: 32px;
     right: 32px;
-    transition: all 0.2s linear;
+    line-height: 0;
 
     @media (max-width: 767px) {
         top: 24px;
         right: 16px;
     }
 
-    &:hover {
+    & > * {
+        transform: rotateY(0);
+        transition: all 0.2s linear;
+    }
+
+    &:hover > * {
         transform: rotateY(180deg);
     }
 }
