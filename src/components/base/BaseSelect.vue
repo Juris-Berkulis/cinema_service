@@ -40,7 +40,6 @@ const changeSelectedValue = (option: City): void => {
     position: relative;
     background-color: rgba(255, 255, 255, 0.10);
     transition: all 0.4s linear;
-    cursor: pointer;
 
     &.error {
         background-color: rgba(236, 63, 63, 0.20);
@@ -54,6 +53,7 @@ const changeSelectedValue = (option: City): void => {
     opacity: 0.4;
     padding: 18px 24px;
     transition: all 0.2s linear;
+    cursor: pointer;
 
     @media (max-width: 1439px) {
         padding: 18px 20px;
@@ -82,6 +82,7 @@ const changeSelectedValue = (option: City): void => {
     background-color: #2f2f2f;
     transition: all 0.2s linear;
     z-index: 9;
+    cursor: pointer;
 
     &.error {
         background-color: #422020;

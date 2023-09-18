@@ -15,7 +15,7 @@ a {
 
 h1 {
   color: #FFF;
-  font-family: Futura PT;
+  font-family: 'Futura PT';
   font-size: 56px;
   font-style: normal;
   font-weight: 600;
@@ -24,7 +24,7 @@ h1 {
 
 h2 {
   color: #FFF;
-  font-family: Futura PT;
+  font-family: 'Futura PT';
   font-size: 40px;
   font-style: normal;
   font-weight: 600;
@@ -33,7 +33,7 @@ h2 {
 
 h3 {
   color: #FFF;
-  font-family: Futura PT;
+  font-family: 'Futura PT';
   font-size: 32px;
   font-style: normal;
   font-weight: 600;
@@ -42,7 +42,7 @@ h3 {
 
 h4 {
   color: #FFF;
-  font-family: Futura PT;
+  font-family: 'Futura PT';
   font-size: 24px;
   font-style: normal;
   font-weight: 400;
@@ -50,7 +50,7 @@ h4 {
 
   & b{
     color: #FFF;
-    font-family: Futura PT;
+    font-family: 'Futura PT';
     font-size: 24px;
     font-style: normal;
     font-weight: 600;
@@ -60,7 +60,7 @@ h4 {
 
 p {
   color: #FFF;
-  font-family: Futura PT;
+  font-family: 'Futura PT';
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -68,7 +68,7 @@ p {
 
   & b {
     color: #FFF;
-    font-family: Futura PT;
+    font-family: 'Futura PT';
     font-size: 16px;
     font-style: normal;
     font-weight: 600;
@@ -79,7 +79,7 @@ p {
 a {
   color: #FFF;
   text-align: center;
-  font-family: Futura PT;
+  font-family: 'Futura PT';
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -140,11 +140,11 @@ a {
 button {
   color: #FFF;
   text-align: center;
-  font-family: Futura PT;
+  font-family: 'Futura PT';
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
-  line-height: 24px;
+  line-height: 1;
   border: none;
   background-color: transparent;
   cursor: pointer;
@@ -166,7 +166,7 @@ input {
   outline: none;
   border: none;
   color: inherit;
-  font-family: Futura PT;
+  font-family: 'Futura PT';
   font-size: inherit;
   font-style: inherit;
   font-weight: inherit;

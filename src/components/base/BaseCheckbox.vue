@@ -46,6 +46,7 @@ watchEffect(() => {
 .label {
     display: flex;
     align-items: center;
+    cursor: pointer;
 }
 
 .square {

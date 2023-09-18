@@ -46,6 +46,7 @@ const changeInputedValue = (event: Event): void => {
     padding: 18px 24px;
     background-color: rgba(255, 255, 255, 0.10);
     transition: all 0.2s linear;
+    cursor: pointer;
 
     @media (max-width: 1439px) {
         padding: 18px 20px;

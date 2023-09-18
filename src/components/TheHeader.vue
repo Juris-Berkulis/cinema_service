@@ -9,7 +9,7 @@ import logo from '@/assets/img/logo.png';
     <RouterLink :to="routesObj.home">
         <img class="logo" :src="logo" alt="logo">
     </RouterLink>
-    <BaseBtn3 v-if="routesObj.request !== $route.path" :to="routesObj.request" />
+    <BaseBtn3 class="btn" v-if="routesObj.request !== $route.path" :to="routesObj.request" />
 </header>
 </template>
 
@@ -40,6 +40,12 @@ import logo from '@/assets/img/logo.png';
     @media (max-width: 767px) {
         width: 106px;
         height: 36px;
+    }
+}
+
+.btn {
+    @media (max-width: 767px) {
+        padding: 16px 20px;
     }
 }
 </style>

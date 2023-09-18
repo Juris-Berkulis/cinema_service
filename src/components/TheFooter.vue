@@ -61,7 +61,7 @@ const isShowPolicy: Ref<boolean> = ref(false);
 .btn {
     max-width: 183px;
     color: #FFF;
-    font-family: Futura PT;
+    font-family: 'Futura PT';
     font-size: 14px;
     font-style: normal;
     font-weight: 400;

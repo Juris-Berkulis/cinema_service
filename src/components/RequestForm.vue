@@ -204,7 +204,7 @@ const submit = (): void => {
 
 .field {
     position: relative;
-    font-family: Futura PT;
+    font-family: 'Futura PT';
     font-size: 16px;
     font-style: normal;
     font-weight: 400;

@@ -1,0 +1,38 @@
+@font-face {
+    font-family: 'Futura PT';
+    src: url('../fonts/Futura_PT/400/FuturaPT-Book.eot');
+    src: local('Futura PT Book'), local('FuturaPT-Book'),
+        url('../fonts/Futura_PT/400/FuturaPT-Book.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Futura_PT/400/FuturaPT-Book.woff2') format('woff2'),
+        url('../fonts/Futura_PT/400/FuturaPT-Book.woff') format('woff'),
+        url('../fonts/Futura_PT/400/FuturaPT-Book.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Futura PT';
+    src: url('../fonts/Futura_PT/600/FuturaPT-Demi.eot');
+    src: local('Futura PT Demi'), local('FuturaPT-Demi'),
+        url('../fonts/Futura_PT/600/FuturaPT-Demi.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Futura_PT/600/FuturaPT-Demi.woff2') format('woff2'),
+        url('../fonts/Futura_PT/600/FuturaPT-Demi.woff') format('woff'),
+        url('../fonts/Futura_PT/600/FuturaPT-Demi.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('../fonts/Roboto/400/Roboto-Regular.eot');
+    src: local('Roboto'), local('Roboto-Regular'),
+        url('../fonts/Roboto/400/Roboto-Regular.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Roboto/400/Roboto-Regular.woff2') format('woff2'),
+        url('../fonts/Roboto/400/Roboto-Regular.woff') format('woff'),
+        url('../fonts/Roboto/400/Roboto-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
