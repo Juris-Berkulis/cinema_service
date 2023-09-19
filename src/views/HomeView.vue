@@ -2,9 +2,8 @@
 import HomeBanner from '@/components/HomeBanner.vue';
 import HomeSlider from '@/components/HomeSlider.vue';
 import HomeStills from '@/components/HomeStills.vue';
-import { movie } from '@/assets/data/data';
 import HomeMap from '@/components/HomeMap.vue';
-
+import { movie } from '@/assets/data/data';
 </script>
 
 <template>
