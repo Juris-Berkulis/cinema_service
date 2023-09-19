@@ -6,6 +6,37 @@ import point from '@/assets/img/point.png';
 const mapRef: Ref<HTMLElement | null> = ref(null);
 const timerId: Ref<ReturnType<typeof setTimeout> | undefined> = ref();
 
+interface Point {
+    latitude: number, 
+    longitude: number,
+};
+
+const pointsList: Point[] = [
+    {latitude: 37.622218, longitude: 55.750906},
+    {latitude: 37.552725, longitude: 55.754544},
+    {latitude: 37.528613, longitude: 55.777323},
+];
+
+const createImageElement = (): HTMLImageElement => {
+    const imageElement: HTMLImageElement = document.createElement('img');
+    imageElement.src = point;
+    imageElement.alt = 'point';
+    imageElement.className = 'map__point';
+
+    return imageElement
+};
+
+const createMarker = (latitude: number, longitude: number, markerElement: HTMLImageElement): YMapMarker => {
+    const marker: YMapMarker = new ymaps3.YMapMarker({
+        source: 'markerSource',
+        coordinates: [latitude, longitude],
+        draggable: false,
+        mapFollowsOnDrag: false,
+    }, markerElement);
+
+    return marker
+};
+
 const initMap = (): void => {
     ymaps3.ready.then(() => {
         if (mapRef.value) {
@@ -27,37 +58,6 @@ const initMap = (): void => {
                 type: 'markers',
                 zIndex: 2020,
             }));
-
-            const createImageElement = (): HTMLImageElement => {
-                const imageElement: HTMLImageElement = document.createElement('img');
-                imageElement.src = point;
-                imageElement.alt = 'point';
-                imageElement.className = 'map__point';
-
-                return imageElement
-            };
-
-            const createMarker = (latitude: number, longitude: number, markerElement: HTMLImageElement): YMapMarker => {
-                const marker: YMapMarker = new ymaps3.YMapMarker({
-                    source: 'markerSource',
-                    coordinates: [latitude, longitude],
-                    draggable: false,
-                    mapFollowsOnDrag: false,
-                }, markerElement);
-
-                return marker
-            };
-
-            interface Point {
-                latitude: number, 
-                longitude: number,
-            };
-
-            const pointsList: Point[] = [
-                {latitude: 37.622218, longitude: 55.750906},
-                {latitude: 37.552725, longitude: 55.754544},
-                {latitude: 37.528613, longitude: 55.777323},
-            ];
 
             pointsList.forEach((point: Point) => {
                 map.addChild(createMarker(point.latitude, point.longitude, createImageElement()));
