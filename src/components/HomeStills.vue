@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { ref, type Ref, onUnmounted } from 'vue';
+import { ref, type Ref, onBeforeUnmount } from 'vue';
 import BaseBtn2 from './base/BaseBtn2.vue';
 import type { Stills } from '@/assets/data/data';
 import { useEventListener } from '@/composables/event';
+import BaseLoader from './base/BaseLoader.vue';
 
 interface Props {
     stillsList: Stills[],
@@ -13,14 +14,22 @@ const props = defineProps<Props>();
 const page: Ref<number> = ref(1);
 const stillsListForShow: Ref<Array<Stills>> = ref([]);
 const stillsCountOnEachPage: Ref<3 | 5> = ref(5);
+const isLoading: Ref<boolean> = ref(false);
+const timerId: Ref<ReturnType<typeof setTimeout> | undefined> = ref();
 
 const addStillsIntoList = (): void => {
     stillsListForShow.value.push(...props.stillsList.slice((page.value - 1) * stillsCountOnEachPage.value, page.value * stillsCountOnEachPage.value));
 };
 
 const nextPage = (): void => {
-    page.value++;
-    addStillsIntoList();
+    isLoading.value = true;
+
+    timerId.value = setTimeout(() => {
+        page.value++;
+        addStillsIntoList();
+        isLoading.value = false;
+        clearTimeout(Number(timerId.value));
+    }, 2000);
 };
 
 const mobileWidthMediaQuery: MediaQueryList = window.matchMedia("(max-width: 767px)");
@@ -39,6 +48,10 @@ const changeStills = (event?: MediaQueryListEvent): void => {
 useEventListener(mobileWidthMediaQuery, 'change', changeStills);
 
 changeStills();
+
+onBeforeUnmount(() => {
+    clearTimeout(Number(timerId.value));
+});
 </script>
 
 <template>
@@ -47,7 +60,8 @@ changeStills();
     <div class="stillsList">
         <div class="stillItem" :style="{backgroundImage: `url(${still.src})`}" v-for="still of stillsListForShow" :key="still.id"></div>
     </div>
-    <BaseBtn2 v-if="stillsListForShow.length !== stillsList.length" @click="nextPage" />
+    <BaseLoader class="loader" v-if="isLoading" />
+    <BaseBtn2 v-else-if="stillsListForShow.length !== stillsList.length" @click="nextPage" />
 </section>
 </template>
 
@@ -120,5 +134,10 @@ changeStills();
             grid-column: auto / span 1;
         }
     }
+}
+
+.loader {
+    height: 58px;
+    color: #ec3f3f;
 }
 </style>
