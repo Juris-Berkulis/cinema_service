@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { ref, type Ref, onBeforeUnmount } from "vue";
-import type { LngLat, YMap, YMapMarker } from "@yandex/ymaps3-types";
+import type { LngLat, YMap, YMapMarker, YMapLocationRequest } from "@yandex/ymaps3-types";
 import point from '@/assets/img/point.png';
 
+const isMobile: boolean = document.documentElement.clientWidth <= 767;
 const mapRef: Ref<HTMLElement | null> = ref(null);
 const timerId: Ref<ReturnType<typeof setTimeout> | undefined> = ref();
 
@@ -37,14 +38,25 @@ const createMarker = (latitude: number, longitude: number, markerElement: HTMLIm
     return marker
 };
 
+const startingLocation = (): YMapLocationRequest => {
+    if (isMobile)  {
+        return {
+            center: [37.579829, 55.752643] as LngLat, 
+            zoom: 12,
+        }
+    } else {
+        return {
+            center: [37.622591, 55.750105] as LngLat, 
+            zoom: 12,
+        }
+    }
+};
+
 const initMap = (): void => {
     ymaps3.ready.then(() => {
         if (mapRef.value) {
             const map: YMap = new ymaps3.YMap(mapRef.value, {
-                location: {
-                    center: [37.622591, 55.750105] as LngLat, 
-                    zoom: 12,
-                },
+                location: startingLocation(),
             });
 
             map.addChild(new ymaps3.YMapDefaultSchemeLayer({theme: 'light'}));
