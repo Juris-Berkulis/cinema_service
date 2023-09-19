@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch, type Ref, type ComputedRef, computed } from 'vue';
+import { ref, watch, type Ref, type ComputedRef, computed, onBeforeUnmount } from 'vue';
 import BaseBtn1 from '@/components/base/BaseBtn1.vue';
 import BaseSelect from '@/components/base/BaseSelect.vue';
 import BaseInput from '@/components/base/BaseInput.vue';
@@ -19,6 +19,7 @@ const textForEmptedCityError = 'Город не выбран';
 const textForRequiredFieldError = 'Поле не заполненно';
 const textForRegExpError = 'Неверный формат';
 
+const timerId: Ref<ReturnType<typeof setTimeout> | undefined> = ref();
 const isLoading: Ref<boolean> = ref(false);
 
 const selectedCity: Ref<City | ''> = ref('');
@@ -158,8 +159,9 @@ const submit = (): void => {
         };
 
         const promise = new Promise((resolve) => {
-            setTimeout(() => {
+            timerId.value = setTimeout(() => {
                 resolve(data);
+                clearTimeout(Number(timerId.value));
             }, 4000);
         });
 
@@ -171,6 +173,10 @@ const submit = (): void => {
         });
     }
 };
+
+onBeforeUnmount(() => {
+    clearTimeout(Number(timerId.value));
+});
 </script>
 
 <template>

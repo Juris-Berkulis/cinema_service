@@ -60,6 +60,7 @@ const changeInputedValue = (event: Event): void => {
     left: 24px;
     transform: translateY(-50%);
     opacity: 0.4;
+    pointer-events: none;
     transition: all 0.4s linear;
 
     @media (max-width: 1439px) {
