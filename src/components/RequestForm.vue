@@ -69,68 +69,59 @@ const maskForInputedTel = (value: string): string => {
     return mask
 };
 
-const checkSelectedCity = (): void => {
-    switch (true) {
-        case requiredField(selectedCity.value): errorForSelectedCity.value = textForEmptedCityError; break;
-        default: errorForSelectedCity.value = '';
-    }
+type Field = 'city' | 'name' | 'email' | 'tel' | 'remark' | 'file' | 'consent';
+
+type FieldOptions = { isValidationError: () => boolean, error: Ref<string>, errorText: string };
+
+type ValidatedObj = {
+    [key in Field]: FieldOptions[];
 };
-const checkInputedName = (): void => {
-    switch (true) {
-        case requiredField(inputedName.value): errorForInputedName.value = textForRequiredFieldError; break;
-        default: errorForInputedName.value = '';
+
+const validatedObj: ValidatedObj = {
+    city: [{ isValidationError: () => requiredField(selectedCity.value), error: errorForSelectedCity, errorText: textForEmptedCityError }],
+    name: [{ isValidationError: () => requiredField(inputedName.value), error: errorForInputedName, errorText: textForRequiredFieldError }],
+    email: [
+        { isValidationError: () => requiredField(inputedEmail.value), error: errorForInputedEmail, errorText: textForRequiredFieldError },
+        { isValidationError: () => regExpMatching(inputedEmail.value, regExpForEmail), error: errorForInputedEmail, errorText: textForRegExpError },
+    ],
+    tel: [
+        { isValidationError: () => requiredField(inputedTel.value), error: errorForInputedTel, errorText: textForRequiredFieldError },
+        { isValidationError: () => regExpMatching(inputedTel.value, regExpForTel), error: errorForInputedTel, errorText: textForRegExpError },
+    ],
+    remark: [{ isValidationError: () => requiredField(inputedRemark.value), error: errorForInputedRemark, errorText: textForRequiredFieldError }],
+    file: [{ isValidationError: () => requiredField(attachedFile.value), error: errorForAttachedFile, errorText: textForRequiredFieldError }],
+    consent: [{ isValidationError: () => requiredField(isConsent.value), error: errorForIsConsent, errorText: textForRequiredFieldError }],
+}
+
+const checkField = (field: Field) => {
+    for (let i = 0; i < validatedObj[field].length; i++) {
+        const fieldOptions: FieldOptions = validatedObj[field][i];
+
+        if (fieldOptions.isValidationError()) {
+            fieldOptions.error.value = fieldOptions.errorText; return
+        }
     }
-};
-const checkInputedEmail = (): void => {
-    switch (true) {
-        case requiredField(inputedEmail.value): errorForInputedEmail.value = textForRequiredFieldError; break;
-        case regExpMatching(inputedEmail.value, regExpForEmail): errorForInputedEmail.value = textForRegExpError; break;
-        default: errorForInputedEmail.value = '';
-    }
-};
-const checkInputedTel = (): void => {
-    switch (true) {
-        case requiredField(inputedTel.value): errorForInputedTel.value = textForRequiredFieldError; break;
-        case regExpMatching(inputedTel.value, regExpForTel): errorForInputedTel.value = textForRegExpError; break;
-        default: errorForInputedTel.value = '';
-    }
-};
-const checkInputedRemark = (): void => {
-    switch (true) {
-        case requiredField(inputedRemark.value): errorForInputedRemark.value = textForRequiredFieldError; break;
-        default: errorForInputedRemark.value = '';
-    }
-};
-const checkAttachedFile = (): void => {
-    switch (true) {
-        case requiredField(attachedFile.value): errorForAttachedFile.value = textForRequiredFieldError; break;
-        default: errorForAttachedFile.value = '';
-    }
-};
-const checkIsConsent = (): void => {
-    switch (true) {
-        case requiredField(isConsent.value): errorForIsConsent.value = textForRequiredFieldError; break;
-        default: errorForIsConsent.value = '';
-    }
+
+    validatedObj[field][0].error.value = '';
 };
 
 const checkAllFields = (): void => {
-    checkSelectedCity();
-    checkInputedName();
-    checkInputedEmail();
-    checkInputedTel();
-    checkInputedRemark();
-    checkAttachedFile();
-    checkIsConsent();
+    checkField('city');
+    checkField('name');
+    checkField('email');
+    checkField('tel');
+    checkField('remark');
+    checkField('file');
+    checkField('consent');
 };
 
-watch(selectedCity, checkSelectedCity);
-watch(inputedName, checkInputedName);
-watch(inputedEmail, checkInputedEmail);
-watch(inputedTel, checkInputedTel);
-watch(inputedRemark, checkInputedRemark);
-watch(attachedFile, checkAttachedFile);
-watch(isConsent, checkIsConsent);
+watch(selectedCity, () => checkField('city'));
+watch(inputedName, () => checkField('name'));
+watch(inputedEmail, () => checkField('email'));
+watch(inputedTel, () => checkField('tel'));
+watch(inputedRemark, () => checkField('remark'));
+watch(attachedFile, () => checkField('file'));
+watch(isConsent, () => checkField('consent'));
 
 const resetForm = (): void => {
     selectedCity.value = '';
