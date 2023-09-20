@@ -7,7 +7,7 @@ import BaseTextarea from '@/components/base/BaseTextarea.vue';
 import BaseInputFile from '@/components/base/BaseInputFile.vue';
 import BaseCheckbox from '@/components/base/BaseCheckbox.vue';
 import BaseLoader from '@/components/base/BaseLoader.vue';
-import { regExpMatching, requiredField } from '@/composables/validation';
+import { regExpMatching, requiredField, minLength } from '@/composables/validation';
 import { type City } from '@/types';
 
 const emit = defineEmits(['update:isRequestSent']);
@@ -15,9 +15,11 @@ const emit = defineEmits(['update:isRequestSent']);
 const options: City[] = ['Москва', 'Санкт-Петербург', 'Казань', 'Краснодар', 'Ростов-на-Дону'];
 const regExpForEmail = /^[a-z0-9\.\-_]{1,}@[a-z]{2,4}\.[a-z]{2,4}$/;
 const regExpForTel = /^[0-9]{10}$/;
+const minLengthForRemark: number = 5;
 const textForEmptedCityError = 'Город не выбран';
 const textForRequiredFieldError = 'Поле не заполненно';
 const textForRegExpError = 'Неверный формат';
+const textForminLengthError = (minLength: number): string => `Минимальная длина ${minLength} символов`;
 
 const timerId: Ref<ReturnType<typeof setTimeout> | undefined> = ref();
 const isLoading: Ref<boolean> = ref(false);
@@ -88,7 +90,10 @@ const validatedObj: ValidatedObj = {
         { isValidationError: () => requiredField(inputedTel.value), error: errorForInputedTel, errorText: textForRequiredFieldError },
         { isValidationError: () => regExpMatching(inputedTel.value, regExpForTel), error: errorForInputedTel, errorText: textForRegExpError },
     ],
-    remark: [{ isValidationError: () => requiredField(inputedRemark.value), error: errorForInputedRemark, errorText: textForRequiredFieldError }],
+    remark: [
+        { isValidationError: () => requiredField(inputedRemark.value), error: errorForInputedRemark, errorText: textForRequiredFieldError },
+        { isValidationError: () => minLength(inputedRemark.value, minLengthForRemark), error: errorForInputedRemark, errorText: textForminLengthError(minLengthForRemark) },
+    ],
     file: [{ isValidationError: () => requiredField(attachedFile.value), error: errorForAttachedFile, errorText: textForRequiredFieldError }],
     consent: [{ isValidationError: () => requiredField(isConsent.value), error: errorForIsConsent, errorText: textForRequiredFieldError }],
 };

@@ -16,7 +16,16 @@ const regExpMatching = (value: string, regExp: RegExp): boolean => {
     return error.value
 };
 
+const minLength = (value: string, strLength: number): boolean => {
+    if (value.length < strLength) {
+        return true
+    } else {
+        return false
+    }
+};
+
 export {
     requiredField, 
     regExpMatching, 
+    minLength, 
 };
