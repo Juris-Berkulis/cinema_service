@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import BaseFormFieldError from './BaseFormFieldError.vue';
+import BaseFormFieldError from '@/components/base/BaseFormFieldError.vue';
 
 interface Props {
     type: 'text' | 'email' | 'tel',

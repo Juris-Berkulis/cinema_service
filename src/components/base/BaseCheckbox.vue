@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, watchEffect, type Ref } from 'vue';
-import IconCheckmark from '../icons/IconCheckmark.vue';
-import BaseFormFieldError from './BaseFormFieldError.vue';
+import BaseFormFieldError from '@/components/base/BaseFormFieldError.vue';
+import IconCheckmark from '@/components/icons/IconCheckmark.vue';
 
 interface Props {
     isNoted: boolean,

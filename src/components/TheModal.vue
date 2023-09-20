@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import IconCrossToClose from './icons/IconCrossToClose.vue';
+import IconCrossToClose from '@/components/icons/IconCrossToClose.vue';
 
 interface Props {
     isShowModal: boolean,

@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { computed, type ComputedRef } from 'vue';
 import BaseBtn1 from '@/components/base/BaseBtn1.vue';
-import type { Banner } from '@/assets/data/data';
 import { routesObj } from '@/router';
+import type { Banner } from '@/assets/data/data';
 
 interface Props {
     banner: Banner,

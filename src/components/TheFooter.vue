@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import logo from '@/assets/img/logo.png';
-import IconInstagram from './icons/IconInstagram.vue';
-import IconFacebook from './icons/IconFacebook.vue';
-import IconVk from './icons/IconVk.vue';
 import { ref, type Ref } from 'vue';
-import TheModal from './TheModal.vue';
-import ThePolicy from './ThePolicy.vue';
+import TheModal from '@/components/TheModal.vue';
+import ThePolicy from '@/components/ThePolicy.vue';
+import IconInstagram from '@/components/icons/IconInstagram.vue';
+import IconFacebook from '@/components/icons/IconFacebook.vue';
+import IconVk from '@/components/icons/IconVk.vue';
 import { routesObj } from '@/router';
+import logo from '@/assets/img/logo.png';
 
 const isShowPolicy: Ref<boolean> = ref(false);
 </script>

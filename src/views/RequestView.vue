@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import RequestAbout from '@/components/RequestAbout.vue';
-import RequestForm from '@/components/RequestForm.vue';
-import RequestSuccess from '@/components/RequestSuccess.vue';
 import { ref, type Ref } from 'vue';
+import RequestSuccess from '@/components/RequestSuccess.vue';
+import RequestForm from '@/components/RequestForm.vue';
+import RequestAbout from '@/components/RequestAbout.vue';
 
 const isRequestSent: Ref<boolean> = ref(false);
 </script>

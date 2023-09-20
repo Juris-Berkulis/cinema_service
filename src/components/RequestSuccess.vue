@@ -1,6 +1,6 @@
 <script setup lang="ts">
+import BaseBtn1 from '@/components/base/BaseBtn1.vue';
 import { routesObj } from '@/router';
-import BaseBtn1 from './base/BaseBtn1.vue';
 </script>
 
 <template>

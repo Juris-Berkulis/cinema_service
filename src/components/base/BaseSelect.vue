@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { City } from '@/types';
 import { ref, type Ref } from 'vue';
-import BaseFormFieldError from './BaseFormFieldError.vue';
-import IconArrowToDown from '../icons/IconArrowToDown.vue';
+import BaseFormFieldError from '@/components/base/BaseFormFieldError.vue';
+import IconArrowToDown from '@/components/icons/IconArrowToDown.vue';
 
 interface Props {
     selectedValue: City | '',
@@ -29,7 +29,12 @@ const changeSelectedValue = (option: City): void => {
         <IconArrowToDown class="arrow" :class="{open: isShowOptionsList}" />
     </div>
     <div class="optionsList" :class="{error}" v-if="isShowOptionsList">
-        <div class="options" v-for="option of optionsList" :key="option" @click="changeSelectedValue(option)">{{ option }}</div>
+        <div 
+            class="options" 
+            v-for="option of optionsList" 
+            :key="option" 
+            @click="changeSelectedValue(option)"
+        >{{ option }}</div>
     </div>
     <BaseFormFieldError :error="error" />
 </div>

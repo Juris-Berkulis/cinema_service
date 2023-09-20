@@ -1,6 +1,6 @@
 <script setup lang="ts">
+import BaseBtn3 from '@/components/base/BaseBtn3.vue';
 import { routesObj } from '@/router';
-import BaseBtn3 from './base/BaseBtn3.vue';
 import logo from '@/assets/img/logo.png';
 </script>
 

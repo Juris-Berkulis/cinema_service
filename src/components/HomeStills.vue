@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ref, type Ref, onBeforeUnmount } from 'vue';
-import BaseBtn2 from './base/BaseBtn2.vue';
-import type { Stills } from '@/assets/data/data';
+import BaseBtn2 from '@/components/base/BaseBtn2.vue';
+import BaseLoader from '@/components/base/BaseLoader.vue';
 import { useEventListener } from '@/composables/event';
-import BaseLoader from './base/BaseLoader.vue';
+import type { Stills } from '@/assets/data/data';
 
 interface Props {
     stillsList: Stills[],
@@ -58,7 +58,12 @@ onBeforeUnmount(() => {
 <section class="section">
     <h2 class="title">Кадры со съемок</h2>
     <div class="stillsList">
-        <div class="stillItem" :style="{backgroundImage: `url(${still.src})`}" v-for="still of stillsListForShow" :key="still.id"></div>
+        <div 
+            class="stillItem" 
+            :style="{backgroundImage: `url(${still.src})`}" 
+            v-for="still of stillsListForShow" 
+            :key="still.id"
+        ></div>
     </div>
     <BaseLoader class="loader" v-if="isLoading" />
     <BaseBtn2 v-else-if="stillsListForShow.length !== stillsList.length" @click="nextPage" />

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import IconPaperclip from '../icons/IconPaperclip.vue';
-import BaseFormFieldError from './BaseFormFieldError.vue';
+import BaseFormFieldError from '@/components/base/BaseFormFieldError.vue';
+import IconPaperclip from '@/components/icons/IconPaperclip.vue';
 
 interface Props {
     attachedFile: string,

@@ -6,9 +6,9 @@ import BaseInput from '@/components/base/BaseInput.vue';
 import BaseTextarea from '@/components/base/BaseTextarea.vue';
 import BaseInputFile from '@/components/base/BaseInputFile.vue';
 import BaseCheckbox from '@/components/base/BaseCheckbox.vue';
+import BaseLoader from '@/components/base/BaseLoader.vue';
 import { regExpMatching, requiredField } from '@/composables/validation';
 import { type City } from '@/types';
-import BaseLoader from './base/BaseLoader.vue';
 
 const emit = defineEmits(['update:isRequestSent']);
 
@@ -91,7 +91,7 @@ const validatedObj: ValidatedObj = {
     remark: [{ isValidationError: () => requiredField(inputedRemark.value), error: errorForInputedRemark, errorText: textForRequiredFieldError }],
     file: [{ isValidationError: () => requiredField(attachedFile.value), error: errorForAttachedFile, errorText: textForRequiredFieldError }],
     consent: [{ isValidationError: () => requiredField(isConsent.value), error: errorForIsConsent, errorText: textForRequiredFieldError }],
-}
+};
 
 const checkField = (field: Field) => {
     for (let i = 0; i < validatedObj[field].length; i++) {
@@ -149,7 +149,7 @@ const submit = (): void => {
             consent: isConsent.value,
         };
 
-        const promise = new Promise((resolve) => {
+        const promise: Promise<unknown> = new Promise((resolve) => {
             timerId.value = setTimeout(() => {
                 resolve(data);
                 clearTimeout(Number(timerId.value));

@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { ref, type ComputedRef, type Ref, computed, watchEffect, onUnmounted } from 'vue';
-import IconArrowToNext from './icons/IconArrowToNext.vue';
-import IconArrowToPrev from './icons/IconArrowToPrev.vue';
-import type { Actor } from '@/assets/data/data';
+import { ref, type ComputedRef, type Ref, computed, watchEffect } from 'vue';
+import IconArrowToPrev from '@/components/icons/IconArrowToPrev.vue';
+import IconArrowToNext from '@/components/icons/IconArrowToNext.vue';
 import { useEventListener } from '@/composables/event';
+import type { Actor } from '@/assets/data/data';
 
 interface Props {
     actorsList: Actor[],
@@ -76,10 +76,6 @@ const moveSlider = (direction: 'prev' | 'next'): void => {
         }
     }, 10);
 };
-
-const actorItemBackground = (src: string): string => {
-    return `url(${src})`
-};
 </script>
 
 <template>
@@ -109,9 +105,22 @@ const actorItemBackground = (src: string): string => {
             </button>
         </div>
     </div>
-    <div class="decor" :class="{decor__75: !isSliderBtnPrevDisabled && !isSliderBtnNextDisabled, decor__100: isSliderBtnNextDisabled}" ref="decorRef"></div>
+    <div 
+        class="decor" 
+        :class="{
+            decor__75: !isSliderBtnPrevDisabled 
+            && 
+            !isSliderBtnNextDisabled, decor__100: isSliderBtnNextDisabled
+        }" 
+        ref="decorRef"
+    ></div>
     <div class="actors__list" ref="actorsListRef">
-        <div class="actor__item" :style="{backgroundImage: actorItemBackground(actor.src)}" v-for="actor of actorsList" :key="actor.id">
+        <div 
+            class="actor__item" 
+            :style="{backgroundImage: `url(${actor.src})`}" 
+            v-for="actor of actorsList" 
+            :key="actor.id"
+        >
             <div class="actor__main">
                 <h4 class="actor__movieHero"><b>{{ actor.movieHero }}</b></h4>
                 <h4 class="actor__name">{{ actor.actorName }}</h4>
