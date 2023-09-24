@@ -1,31 +1,23 @@
-import { ref, type Ref } from "vue";
-
-const requiredField = (value: string | boolean): boolean => {
-    const error: Ref<boolean> = ref(false);
-
-    if (!value) error.value = true;
-
-    return error.value
+interface UseValidation {
+    [key: string]: (value: any, ...args: any) => boolean;
 };
 
-const regExpMatching = (value: string, regExp: RegExp): boolean => {
-    const error: Ref<boolean> = ref(false);
-
-    if (!regExp.test(value)) error.value = true;
-
-    return error.value
-};
-
-const minLength = (value: string, strLength: number): boolean => {
-    if (value.length < strLength) {
-        return true
-    } else {
-        return false
+export const useValidation = (): UseValidation => {
+    const requiredField = (value: string | boolean): boolean => {
+        return !!value
+    };
+    
+    const regExpMatching = (value: string, regExp: RegExp): boolean => {
+        return regExp.test(value)
+    };
+    
+    const minLength = (value: string, strLength: number): boolean => {
+        return value.length >= strLength
+    };
+    
+    return {
+        requiredField, 
+        regExpMatching, 
+        minLength, 
     }
-};
-
-export {
-    requiredField, 
-    regExpMatching, 
-    minLength, 
 };

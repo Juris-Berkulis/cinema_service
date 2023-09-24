@@ -7,10 +7,16 @@ import BaseTextarea from '@/components/base/BaseTextarea.vue';
 import BaseInputFile from '@/components/base/BaseInputFile.vue';
 import BaseCheckbox from '@/components/base/BaseCheckbox.vue';
 import BaseLoader from '@/components/base/BaseLoader.vue';
-import { regExpMatching, requiredField, minLength } from '@/composables/validation';
+import { useValidation } from '@/composables/validation';
 import { type City } from '@/types';
 
 const emit = defineEmits(['update:isRequestSent']);
+
+const { 
+    requiredField, 
+    regExpMatching, 
+    minLength, 
+} = useValidation();
 
 const options: City[] = ['Москва', 'Санкт-Петербург', 'Казань', 'Краснодар', 'Ростов-на-Дону'];
 const regExpForEmail = /^[a-z0-9\.\-_]{1,}@[a-z]{2,4}\.[a-z]{2,4}$/;
@@ -73,36 +79,36 @@ const maskForInputedTel = (value: string): string => {
 
 type Field = 'city' | 'name' | 'email' | 'tel' | 'remark' | 'file' | 'consent';
 
-type FieldOptions = { isValidationError: () => boolean, error: Ref<string>, errorText: string };
+type FieldOptions = { isValid: () => boolean, error: Ref<string>, errorText: string };
 
 type ValidatedObj = {
     [key in Field]: FieldOptions[];
 };
 
 const validatedObj: ValidatedObj = {
-    city: [{ isValidationError: () => requiredField(selectedCity.value), error: errorForSelectedCity, errorText: textForEmptedCityError }],
-    name: [{ isValidationError: () => requiredField(inputedName.value), error: errorForInputedName, errorText: textForRequiredFieldError }],
+    city: [{ isValid: () => requiredField(selectedCity.value), error: errorForSelectedCity, errorText: textForEmptedCityError }],
+    name: [{ isValid: () => requiredField(inputedName.value), error: errorForInputedName, errorText: textForRequiredFieldError }],
     email: [
-        { isValidationError: () => requiredField(inputedEmail.value), error: errorForInputedEmail, errorText: textForRequiredFieldError },
-        { isValidationError: () => regExpMatching(inputedEmail.value, regExpForEmail), error: errorForInputedEmail, errorText: textForRegExpError },
+        { isValid: () => requiredField(inputedEmail.value), error: errorForInputedEmail, errorText: textForRequiredFieldError },
+        { isValid: () => regExpMatching(inputedEmail.value, regExpForEmail), error: errorForInputedEmail, errorText: textForRegExpError },
     ],
     tel: [
-        { isValidationError: () => requiredField(inputedTel.value), error: errorForInputedTel, errorText: textForRequiredFieldError },
-        { isValidationError: () => regExpMatching(inputedTel.value, regExpForTel), error: errorForInputedTel, errorText: textForRegExpError },
+        { isValid: () => requiredField(inputedTel.value), error: errorForInputedTel, errorText: textForRequiredFieldError },
+        { isValid: () => regExpMatching(inputedTel.value, regExpForTel), error: errorForInputedTel, errorText: textForRegExpError },
     ],
     remark: [
-        { isValidationError: () => requiredField(inputedRemark.value), error: errorForInputedRemark, errorText: textForRequiredFieldError },
-        { isValidationError: () => minLength(inputedRemark.value, minLengthForRemark), error: errorForInputedRemark, errorText: textForminLengthError(minLengthForRemark) },
+        { isValid: () => requiredField(inputedRemark.value), error: errorForInputedRemark, errorText: textForRequiredFieldError },
+        { isValid: () => minLength(inputedRemark.value, minLengthForRemark), error: errorForInputedRemark, errorText: textForminLengthError(minLengthForRemark) },
     ],
-    file: [{ isValidationError: () => requiredField(attachedFile.value), error: errorForAttachedFile, errorText: textForRequiredFieldError }],
-    consent: [{ isValidationError: () => requiredField(isConsent.value), error: errorForIsConsent, errorText: textForRequiredFieldError }],
+    file: [{ isValid: () => requiredField(attachedFile.value), error: errorForAttachedFile, errorText: textForRequiredFieldError }],
+    consent: [{ isValid: () => requiredField(isConsent.value), error: errorForIsConsent, errorText: textForRequiredFieldError }],
 };
 
 const checkField = (field: Field) => {
     for (let i = 0; i < validatedObj[field].length; i++) {
         const fieldOptions: FieldOptions = validatedObj[field][i];
 
-        if (fieldOptions.isValidationError()) {
+        if (!fieldOptions.isValid()) {
             fieldOptions.error.value = fieldOptions.errorText; return
         }
     }
